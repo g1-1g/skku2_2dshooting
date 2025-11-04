@@ -10,7 +10,7 @@ public class SubBullet : MonoBehaviour
     public float AccelTime = 1.5f;
     public float Acceleration;
 
-    public string state = "Ready";
+  
     void Start()
     {
         Acceleration = (TargetSpeed - _speed) / AccelTime;

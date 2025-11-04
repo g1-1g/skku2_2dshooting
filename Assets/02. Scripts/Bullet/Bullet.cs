@@ -22,7 +22,6 @@ public class Bullet : MonoBehaviour
     private float _verticalOffset = 0f;
     private float _elapsedTime = 0f;
 
-    public string state = "Ready";
 
     void Start()
     {

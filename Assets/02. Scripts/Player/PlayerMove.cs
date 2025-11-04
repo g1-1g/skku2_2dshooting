@@ -17,7 +17,7 @@ public class PlayerMove : MonoBehaviour
     public float Speed = 3;
     public float TempSpeed;
 
-    public float rush = 2f;
+    public float Rush = 2f;
 
 
     [Header("시작위치")]
@@ -31,8 +31,8 @@ public class PlayerMove : MonoBehaviour
     public float MaxY = 4f;  // 예시 값
 
     // 속도 조절 관련 속성
-    public float minSpeed = 1f; // 최소 속도
-    public float maxSpeed = 10f; // 최대 속도
+    public float MinSpeed = 1f; // 최소 속도
+    public float MaxSpeed = 10f; // 최대 속도
     public float SpeedChangeAmount = 1f; // 속도 변경량
 
 
@@ -55,7 +55,7 @@ public class PlayerMove : MonoBehaviour
         MaxY = 0- obejctSize/2;
 
         // 초기 속도 설정을 최소 및 최대 속도 범위 내로 제한
-        Speed = Mathf.Clamp(Speed, minSpeed, maxSpeed);
+        Speed = Mathf.Clamp(Speed, MinSpeed, MaxSpeed);
         _originPosition = transform.position;
     }
 
@@ -98,19 +98,19 @@ public class PlayerMove : MonoBehaviour
         // 5. 스피드 작업 (Q: 스피드 업, E: 스피드 다운)
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Speed = Mathf.Clamp(Speed + SpeedChangeAmount, minSpeed, maxSpeed);
+            Speed = Mathf.Clamp(Speed + SpeedChangeAmount, MinSpeed, MaxSpeed);
             //Debug.Log($"Speed increased to: {Speed}");
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Speed = Mathf.Clamp(Speed - SpeedChangeAmount, minSpeed, maxSpeed);
+            Speed = Mathf.Clamp(Speed - SpeedChangeAmount, MinSpeed, MaxSpeed);
             //Debug.Log($"Speed decreased to: {Speed}");
         }
 
         if (Input.GetKeyDown((KeyCode.LeftShift)))
         {
             TempSpeed = Speed;
-            Speed = Speed * rush;
+            Speed = Speed * Rush;
         };
         if (Input.GetKeyUp((KeyCode.LeftShift)))
         {
