@@ -5,39 +5,42 @@ using UnityEngine.UIElements;
 public class PlayerMove : MonoBehaviour
 {
     // Update is called once per frame
-    // ¸ñÇ¥
-    // "Å°º¸µå ÀÔ·Â"¿¡ µû¶ó "¹æÇâ"À» ±¸ÇÏ°í ±× ¹æÇâÀ¸·Î ÀÌµ¿½ÃÅ°°í ½Í´Ù.
+    // ëª©í‘œ
+    // "í‚¤ë³´ë“œ ì…ë ¥"ì— ë”°ë¼ "ë°©í–¥"ì„ êµ¬í•˜ê³  ê·¸ ë°©í–¥ìœ¼ë¡œ ì´ë™ì‹œí‚¤ê³  ì‹¶ë‹¤.
 
-    // 1. Å°º¸µå ÀÔ·Â
-    // 2. ¹æÇâ ±¸ÇÏ´Â ¹æ¹ı
-    // 3. ÀÌµ¿
+    // 1. í‚¤ë³´ë“œ ì…ë ¥
+    // 2. ë°©í–¥ êµ¬í•˜ëŠ” ë°©ë²•
+    // 3. ì´ë™
 
 
-    // ÇÊ¿ä ¼Ó¼º
+    // í•„ìš” ì†ì„±
     public float Speed = 3;
     public float TempSpeed;
 
     public float rush = 2f;
 
 
-    [Header("ÀÌµ¿ Á¦ÇÑ ¿µ¿ª")]
-    // ÀÌµ¿ Á¦ÇÑ ¿µ¿ª (ÀÎ½ºÆåÅÍ¿¡¼­ °ª Á¶Àı ÇÊ¿ä)
-    public float MinX = -8f; // ¿¹½Ã °ª
-    public float MaxX = 8f;  // ¿¹½Ã °ª
-    public float MinY = -4f; // ¿¹½Ã °ª
-    public float MaxY = 4f;  // ¿¹½Ã °ª
+    [Header("ì‹œì‘ìœ„ì¹˜")]
+    public Vector3 _originPosition;
 
-    // ¼Óµµ Á¶Àı °ü·Ã ¼Ó¼º
-    public float minSpeed = 1f; // ÃÖ¼Ò ¼Óµµ
-    public float maxSpeed = 10f; // ÃÖ´ë ¼Óµµ
-    public float SpeedChangeAmount = 1f; // ¼Óµµ º¯°æ·®
+    [Header("ì´ë™ ì œí•œ ì˜ì—­")]
+    // ì´ë™ ì œí•œ ì˜ì—­ (ì¸ìŠ¤í™í„°ì—ì„œ ê°’ ì¡°ì ˆ í•„ìš”)
+    public float MinX = -8f; // ì˜ˆì‹œ ê°’
+    public float MaxX = 8f;  // ì˜ˆì‹œ ê°’
+    public float MinY = -4f; // ì˜ˆì‹œ ê°’
+    public float MaxY = 4f;  // ì˜ˆì‹œ ê°’
+
+    // ì†ë„ ì¡°ì ˆ ê´€ë ¨ ì†ì„±
+    public float minSpeed = 1f; // ìµœì†Œ ì†ë„
+    public float maxSpeed = 10f; // ìµœëŒ€ ì†ë„
+    public float SpeedChangeAmount = 1f; // ì†ë„ ë³€ê²½ëŸ‰
 
 
 
     public float obejctSize ; //
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    // °ÔÀÓ ¿ÀºêÁ§Æ®°¡ °ÔÀÓÀ» ½ÃÀÛÇÒ ¶§
+    // ê²Œì„ ì˜¤ë¸Œì íŠ¸ê°€ ê²Œì„ì„ ì‹œì‘í•  ë•Œ
     private void Start()
     {
         Camera cam = Camera.main;
@@ -51,33 +54,33 @@ public class PlayerMove : MonoBehaviour
         MinY = leftBottom.y + obejctSize/2;
         MaxY = 0- obejctSize/2;
 
-        // ÃÊ±â ¼Óµµ ¼³Á¤À» ÃÖ¼Ò ¹× ÃÖ´ë ¼Óµµ ¹üÀ§ ³»·Î Á¦ÇÑ
+        // ì´ˆê¸° ì†ë„ ì„¤ì •ì„ ìµœì†Œ ë° ìµœëŒ€ ì†ë„ ë²”ìœ„ ë‚´ë¡œ ì œí•œ
         Speed = Mathf.Clamp(Speed, minSpeed, maxSpeed);
-
+        _originPosition = transform.position;
     }
 
     private void Update()
     {
-        //1. Å°º¸µå ÀÔ·ÂÀ» °¨ÁöÇÑ´Ù.
-        // À¯´ÏÆ¼¿¡´Â Input ÀÌ¶ó°í ÇÏ´Â ¸ğµâÀÌ ÀÔ·Â¿¡ ´ëÇÑ ¸ğµç °ÍÀ» ´ã´çÇÑ´Ù.
-        float h = Input.GetAxis("Horizontal"); // ¼öÆò ÀÔ·Â¿¡ ´ëÇÑ °ªÀ» -1, 0, 1·Î °¡Á®¿Â´Ù.
-        float v = Input.GetAxis("Vertical"); // ¼öÁ÷ ÀÔ·Â¿¡ ´ëÇÑ °ªÀ» -1, 0, 1·Î °¡Á®¿Â´Ù.
+        //1. í‚¤ë³´ë“œ ì…ë ¥ì„ ê°ì§€í•œë‹¤.
+        // ìœ ë‹ˆí‹°ì—ëŠ” Input ì´ë¼ê³  í•˜ëŠ” ëª¨ë“ˆì´ ì…ë ¥ì— ëŒ€í•œ ëª¨ë“  ê²ƒì„ ë‹´ë‹¹í•œë‹¤.
+        float h = Input.GetAxis("Horizontal"); // ìˆ˜í‰ ì…ë ¥ì— ëŒ€í•œ ê°’ì„ -1, 0, 1ë¡œ ê°€ì ¸ì˜¨ë‹¤.
+        float v = Input.GetAxis("Vertical"); // ìˆ˜ì§ ì…ë ¥ì— ëŒ€í•œ ê°’ì„ -1, 0, 1ë¡œ ê°€ì ¸ì˜¨ë‹¤.
 
-        Debug.Log($"h : {h}, v : {v}");
+        //Debug.Log($"h : {h}, v : {v}");
 
-        // 2. ÀÔ·ÂÀ¸·ÎºÎÅÍ ¹æÇâÀ» ±¸ÇÑ´Ù.
+        // 2. ì…ë ¥ìœ¼ë¡œë¶€í„° ë°©í–¥ì„ êµ¬í•œë‹¤.
         Vector2 direction = new Vector2(h, v);
-        // ¹æÇâ º¤ÅÍ¸¦ Á¤±ÔÈ­ÇÏ¿© ´ë°¢¼± ÀÌµ¿ ½Ã ¼Óµµ Áõ°¡ ¹æÁö
+        // ë°©í–¥ ë²¡í„°ë¥¼ ì •ê·œí™”í•˜ì—¬ ëŒ€ê°ì„  ì´ë™ ì‹œ ì†ë„ ì¦ê°€ ë°©ì§€
         direction.Normalize();
 
-        // 3. ±× ¹æÇâÀ¸·Î ÀÌµ¿ ÇÑ´Ù
-        Vector2 position = transform.position; //ÇöÀç À§Ä¡
+        // 3. ê·¸ ë°©í–¥ìœ¼ë¡œ ì´ë™ í•œë‹¤
+        Vector2 position = transform.position; //í˜„ì¬ ìœ„ì¹˜
 
 
-        // »õ·Î¿î À§Ä¡ = ÇöÀç À§Ä¡ + ¼Óµµ + ½Ã°£ (¹æÇâ * ¼Ó·Â * ½Ã°£)
+        // ìƒˆë¡œìš´ ìœ„ì¹˜ = í˜„ì¬ ìœ„ì¹˜ + ì†ë„ + ì‹œê°„ (ë°©í–¥ * ì†ë ¥ * ì‹œê°„)
         Vector2 newPosition = position + direction * Speed * Time.deltaTime;
 
-        // 4. ÀÌµ¿ Á¦ÇÑ ¿µ¿ª Ã³¸®
+        // 4. ì´ë™ ì œí•œ ì˜ì—­ ì²˜ë¦¬
         //newPosition.x = Mathf.Clamp(newPosition.x, MinX, maxX);
         newPosition.y = Mathf.Clamp(newPosition.y, MinY, MaxY);
 
@@ -90,18 +93,18 @@ public class PlayerMove : MonoBehaviour
             newPosition.x = MinX - obejctSize/2;
         }
 
-        transform.position = newPosition; // ÃÖÁ¾ À§Ä¡ Àû¿ë
+        transform.position = newPosition; // ìµœì¢… ìœ„ì¹˜ ì ìš©
 
-        // 5. ½ºÇÇµå ÀÛ¾÷ (Q: ½ºÇÇµå ¾÷, E: ½ºÇÇµå ´Ù¿î)
+        // 5. ìŠ¤í”¼ë“œ ì‘ì—… (Q: ìŠ¤í”¼ë“œ ì—…, E: ìŠ¤í”¼ë“œ ë‹¤ìš´)
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Speed = Mathf.Clamp(Speed + SpeedChangeAmount, minSpeed, maxSpeed);³ª¤¿
-            Debug.Log($"Speed increased to: {Speed}");
+            Speed = Mathf.Clamp(Speed + SpeedChangeAmount, minSpeed, maxSpeed);
+            //Debug.Log($"Speed increased to: {Speed}");
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             Speed = Mathf.Clamp(Speed - SpeedChangeAmount, minSpeed, maxSpeed);
-            Debug.Log($"Speed decreased to: {Speed}");
+            //Debug.Log($"Speed decreased to: {Speed}");
         }
 
         if (Input.GetKeyDown((KeyCode.LeftShift)))
@@ -114,10 +117,13 @@ public class PlayerMove : MonoBehaviour
             Speed = TempSpeed;
         };
         
-        //¿øÁ¡ÀÌµ¿
+        //ì›ì ì´ë™
         if (Input.GetKey(KeyCode.R))
         { 
-            transform.Translate((Vector3.zero - transform.position).normalized * Speed * Time.deltaTime);
+            transform.Translate((_originPosition - transform.position).normalized * Speed * Time.deltaTime);
         }
+
+        
+     
     }
 }
