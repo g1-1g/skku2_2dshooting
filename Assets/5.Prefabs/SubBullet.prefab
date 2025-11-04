@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72048848b1270848a14502dac7da723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetSpeed: 3
-  AccelTime: 0.5
+  TargetSpeed: 10
+  AccelTime: 1.5
   Acceleration: 0
   state: Ready

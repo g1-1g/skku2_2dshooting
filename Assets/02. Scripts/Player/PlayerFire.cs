@@ -13,14 +13,19 @@ public class PlayerFire : MonoBehaviour
     private Transform[] subFirePosition;
 
     public Vector3 ScaleVector;
-    public int AttackMode = 1;
+    public int AttackMode;
 
     private float nextFireTime;
-    public float FireCooldown = 0.6f;
+    public float FireCooldown;
+    public int subFireCycle;
+
 
     void Start()
     {
         nextFireTime = 0f;
+        AttackMode = 2;
+        FireCooldown = 1;
+        subFireCycle = 20;
     }
 
     // Update is called once per frame
@@ -32,22 +37,51 @@ public class PlayerFire : MonoBehaviour
                 if (Time.time >= nextFireTime)
                 {
                     for (int i = 0; i < firePosition.Length; i++)
+                    {
                         Instantiate(bulletPrefab, firePosition[i].position, firePosition[i].rotation);
+                        
+                    }
                     for (int i = 0; i < subFirePosition.Length; i++)
-                        Instantiate(subBulletPrefab, subFirePosition[i].position, subFirePosition[i].rotation);
+                    {
 
+                        for (int j = 0; j <= 360; j = j + subFireCycle)
+                        {
+                            GameObject subBullet = Instantiate(subBulletPrefab, subFirePosition[i].position, subFirePosition[i].rotation);
+                            subBullet.transform.Rotate(0, 0, j);
+                        }
+                        
+                    }
                     nextFireTime = Time.time + FireCooldown;
                 }
+                /*for (int i = 0; i < subFirePosition.Length; i++)
+                {
+                    if (_subFireRotation >= 360)
+                        _subFireRotation = 0;
+                    GameObject subBullet = Instantiate(subBulletPrefab, subFirePosition[i].position, subFirePosition[i].rotation);
+                    subBullet.transform.Rotate(0, 0, _subFireRotation);
+                    _subFireRotation += 5;
+                }*/
                 break;
             case 2:
                 if (Input.GetKey(KeyCode.Space) && Time.time >= nextFireTime)
                 {
                     for (int i = 0; i < firePosition.Length; i++)
                         Instantiate(bulletPrefab, firePosition[i].position, firePosition[i].rotation);
+                    //for (int i = 0; i < subFirePosition.Length; i++)
+                    //    Instantiate(subBulletPrefab, subFirePosition[i].position, subFirePosition[i].rotation);
                     for (int i = 0; i < subFirePosition.Length; i++)
-                        Instantiate(subBulletPrefab, subFirePosition[i].position, subFirePosition[i].rotation);
+                    {
+
+                        for (int j = 0; j <= 360; j = j + subFireCycle)
+                        {
+                            GameObject subBullet = Instantiate(subBulletPrefab, subFirePosition[i].position, subFirePosition[i].rotation);
+                            subBullet.transform.Rotate(0, 0, j);
+                        }
+
+                    }
                     nextFireTime = Time.time + FireCooldown;
                 }
+                
                 break;
         }
         if (Input.GetKeyDown("1"))
