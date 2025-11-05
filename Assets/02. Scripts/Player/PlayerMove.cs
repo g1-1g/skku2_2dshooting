@@ -5,13 +5,6 @@ using UnityEngine.UIElements;
 
 public class PlayerMove : MonoBehaviour
 {
-    // Update is called once per frame
-    // 목표
-    // "키보드 입력"에 따라 "방향"을 구하고 그 방향으로 이동시키고 싶다.
-
-    // 1. 키보드 입력
-    // 2. 방향 구하는 방법
-    // 3. 이동
 
 
     // 필요 속성
@@ -26,13 +19,13 @@ public class PlayerMove : MonoBehaviour
     public Vector3 _originPosition;
 
     [Header("이동 제한 영역")]
-    // 이동 제한 영역 (인스펙터에서 값 조절 필요)
     public float MinX = -8f; // 예시 값
     public float MaxX = 8f;  // 예시 값
     public float MinY = -4f; // 예시 값
     public float MaxY = 4f;  // 예시 값
 
-    // 속도 조절 관련 속성
+
+    [Header("속도 조절 관련 속성")]
     public float MinSpeed = 1f; // 최소 속도
     public float MaxSpeed = 10f; // 최대 속도
     public float SpeedChangeAmount = 1f; // 속도 변경량
@@ -41,8 +34,7 @@ public class PlayerMove : MonoBehaviour
 
     public float obejctSize ; //
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    // 게임 오브젝트가 게임을 시작할 때
+  
     private void Start()
     {
         Camera cam = Camera.main;

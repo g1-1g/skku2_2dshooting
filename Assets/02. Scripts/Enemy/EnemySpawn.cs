@@ -10,6 +10,8 @@ public class EnemySpawn : MonoBehaviour
     private Vector3 _rightTop;
 
     public float CooldownTime = 3;
+    public float MinCooldownTime = 1f;
+    public float MaxCooldownTime = 5f;
     private float _nextSpawnTime = 0f;
 
 
@@ -28,7 +30,7 @@ public class EnemySpawn : MonoBehaviour
         
         if (Time.time > _nextSpawnTime)
         {
-            CooldownTime = Random.Range(1f, 5f);
+            CooldownTime = Random.Range(MinCooldownTime, MaxCooldownTime);
             Instantiate(Enemy, new Vector2(Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
             _nextSpawnTime = Time.time + CooldownTime;
         }

@@ -6,7 +6,6 @@ using static UnityEngine.GraphicsBuffer;
 public class MainBullet : Bullet
 {
 
-   
     // 지그재그 설정 (모두 동일하게 적용)
     public float Amplitude = 1.0f;   // 좌우 진폭
     public float Frequency = 4.0f;   // 흔들림 속도 (Hz가 아닌 rad/s 유사값)

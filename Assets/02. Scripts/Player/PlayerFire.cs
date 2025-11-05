@@ -45,23 +45,12 @@ public class PlayerFire : MonoBehaviour
                     {
 
                         Instantiate(_subBulletPrefab, _subFirePosition[i].position, _subFirePosition[i].rotation);
-                        /*for (int j = 0; j <= 360; j = j + SubFireCycle)
-                        {
-                            GameObject subBullet = Instantiate(_subBulletPrefab, _subFirePosition[i].position, _subFirePosition[i].rotation);
-                            subBullet.transform.Rotate(0, 0, j);
-                        }*/
+        
 
                     }
                     _nextFireTime = Time.time + FireCooldown;
                 }
-                /*for (int i = 0; i < subFirePosition.Length; i++)
-                {
-                    if (_subFireRotation >= 360)
-                        _subFireRotation = 0;
-                    GameObject subBullet = Instantiate(_subBulletPrefab, subFirePosition[i].position, subFirePosition[i].rotation);
-                    subBullet.transform.Rotate(0, 0, _subFireRotation);
-                    _subFireRotation += 5;
-                }*/
+
                 break;
             case 2:
                 if (Input.GetKey(KeyCode.Space) && Time.time >= _nextFireTime)
