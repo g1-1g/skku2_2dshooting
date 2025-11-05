@@ -1,12 +1,15 @@
 using System;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Bullet : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected float _demage = 10;
-    protected float _speed = 5;
+    [Header("공격")]
+    public float Demage = 10;
 
+    [Header("이동")]
+    public float Speed = 5;
     public float TargetSpeed = 10f;
 
     public float AccelTime = 1.5f;
@@ -26,21 +29,11 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Enemy")) return;
+        Enemy enemy = collision.GetComponent<Enemy>();
 
-        AttackEnemy(collision.gameObject);
+        enemy.Hit(Demage);
         Destroy(gameObject);
     }
 
-    void AttackEnemy(GameObject target)
-    {
-        Enemy enemy = target.GetComponent<Enemy>();
-
-        enemy.Health = Math.Max(enemy.Health - _demage, 0);
-        Debug.Log(enemy.Health);
-
-        if (enemy.Health == 0)
-        {
-            Destroy(target.gameObject);
-        }
-    }
+    
 }

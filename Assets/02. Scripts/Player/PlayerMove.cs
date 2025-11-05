@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -55,34 +56,26 @@ public class PlayerMove : MonoBehaviour
         MinY = leftBottom.y + obejctSize/2;
         MaxY = 0- obejctSize/2;
 
-        // 초기 속도 설정을 최소 및 최대 속도 범위 내로 제한
+
         Speed = Mathf.Clamp(Speed, MinSpeed, MaxSpeed);
         _originPosition = transform.position;
     }
 
     private void Update()
     {
-        //1. 키보드 입력을 감지한다.
-        // 유니티에는 Input 이라고 하는 모듈이 입력에 대한 모든 것을 담당한다.
-        float h = Input.GetAxis("Horizontal"); // 수평 입력에 대한 값을 -1, 0, 1로 가져온다.
-        float v = Input.GetAxis("Vertical"); // 수직 입력에 대한 값을 -1, 0, 1로 가져온다.
 
-        //Debug.Log($"h : {h}, v : {v}");
+        float h = Input.GetAxis("Horizontal"); 
+        float v = Input.GetAxis("Vertical"); 
 
-        // 2. 입력으로부터 방향을 구한다.
         Vector2 direction = new Vector2(h, v);
-        // 방향 벡터를 정규화하여 대각선 이동 시 속도 증가 방지
+
         direction.Normalize();
 
-        // 3. 그 방향으로 이동 한다
         Vector2 position = transform.position; //현재 위치
 
 
-        // 새로운 위치 = 현재 위치 + 속도 + 시간 (방향 * 속력 * 시간)
         Vector2 newPosition = position + direction * Speed * Time.deltaTime;
 
-        // 4. 이동 제한 영역 처리
-        //newPosition.x = Mathf.Clamp(newPosition.x, MinX, maxX);
         newPosition.y = Mathf.Clamp(newPosition.y, MinY, MaxY);
 
         if (newPosition.x < MinX - obejctSize/2)
@@ -96,16 +89,15 @@ public class PlayerMove : MonoBehaviour
 
         transform.position = newPosition; // 최종 위치 적용
 
-        // 5. 스피드 작업 (Q: 스피드 업, E: 스피드 다운)
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Speed = Mathf.Clamp(Speed + SpeedChangeAmount, MinSpeed, MaxSpeed);
-            //Debug.Log($"Speed increased to: {Speed}");
+
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             Speed = Mathf.Clamp(Speed - SpeedChangeAmount, MinSpeed, MaxSpeed);
-            //Debug.Log($"Speed decreased to: {Speed}");
+
         }
 
         if (Input.GetKeyDown((KeyCode.LeftShift)))
@@ -122,9 +114,24 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.R))
         { 
             transform.Translate((_originPosition - transform.position).normalized * Speed * Time.deltaTime);
-        }
+        };
 
         
+        
      
+    }
+    public void Hit()
+    {
+        LifeChance -= 1;
+        if (LifeChance > 0)
+        {
+            Debug.Log("Player Life Chance: " + LifeChance);
+        }
+        else
+        {
+            Destroy(gameObject);
+            Debug.Log("Player Die");
+        }
+
     }
 }

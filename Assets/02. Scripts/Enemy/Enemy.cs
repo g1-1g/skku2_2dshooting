@@ -1,3 +1,5 @@
+using System;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -7,11 +9,12 @@ public class Enemy : MonoBehaviour
     [SerializeField]   
     private float _speed = 2;
 
-    public float Health = 100;
+    private float _health = 100;
 
     void Start()
     {
         _speed = 2;
+        
     }
 
     // Update is called once per frame
@@ -29,27 +32,29 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("Player")) //compareTag를 사용하면 해당 태그가 없을 경우 런타임 오류를 냄. == 보다는 comparetag를 사용할 것
         {
             AttackPlayer(collision.gameObject);
-            //Destroy(this.gameObject);
 
         }
             
     }
-    
+   
     void AttackPlayer(GameObject gameObject)
     {
         PlayerMove player = gameObject.GetComponent<PlayerMove>();
-        if (player.LifeChance > 0)
-        {
-            player.LifeChance -= 1;
-            Debug.Log("Player Life Chance: " + player.LifeChance);
-        }
-        else
-        {
-            Destroy(gameObject);
-            Debug.Log("Player Die");
-        }
+        player.Hit();
         Destroy(this.gameObject);
     }
-    
-    
+
+    public void Hit(float Demage)
+    {
+
+        _health = Math.Max(_health - Demage, 0);
+        Debug.Log(_health);
+
+        if (_health == 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
 }

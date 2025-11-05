@@ -20,13 +20,13 @@ public class MainBullet : Bullet
 
     void Start()
     {
-        _demage = 60;
-        _speed = 4;
+        Demage = 60;
+        Speed = 4;
         TargetSpeed = 15f;
         AccelTime = 1.2f;
 
 
-         Acceleration = (TargetSpeed - _speed) / AccelTime;
+         Acceleration = (TargetSpeed - Speed) / AccelTime;
         _startPosition = transform.position;
     }
 
@@ -35,10 +35,10 @@ public class MainBullet : Bullet
         float dt = Time.deltaTime;
 
         // 속도 업데이트 (가속 적용)
-        _speed = Mathf.Min(_speed + Acceleration * dt, TargetSpeed);
+        Speed = Mathf.Min(Speed + Acceleration * dt, TargetSpeed);
 
         // 수직 이동량 누적
-        _verticalOffset += _speed * dt;
+        _verticalOffset += Speed * dt;
 
         // 시간 누적(지그재그 계산용)
         _elapsedTime += dt;

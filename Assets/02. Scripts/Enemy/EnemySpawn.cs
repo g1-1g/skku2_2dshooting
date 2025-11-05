@@ -4,7 +4,8 @@ public class EnemySpawn : MonoBehaviour
 {
 
     public GameObject Enemy;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+
     private Vector3 _leftTop;
     private Vector3 _rightTop;
 
