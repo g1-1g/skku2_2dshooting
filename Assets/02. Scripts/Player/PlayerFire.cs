@@ -44,12 +44,13 @@ public class PlayerFire : MonoBehaviour
                     for (int i = 0; i < _subFirePosition.Length; i++)
                     {
 
-                        for (int j = 0; j <= 360; j = j + SubFireCycle)
+                        Instantiate(_subBulletPrefab, _subFirePosition[i].position, _subFirePosition[i].rotation);
+                        /*for (int j = 0; j <= 360; j = j + SubFireCycle)
                         {
                             GameObject subBullet = Instantiate(_subBulletPrefab, _subFirePosition[i].position, _subFirePosition[i].rotation);
                             subBullet.transform.Rotate(0, 0, j);
-                        }
-                        
+                        }*/
+
                     }
                     _nextFireTime = Time.time + FireCooldown;
                 }
@@ -67,16 +68,11 @@ public class PlayerFire : MonoBehaviour
                 {
                     for (int i = 0; i < _firePosition.Length; i++)
                         Instantiate(_bulletPrefab, _firePosition[i].position, _firePosition[i].rotation);
-                    //for (int i = 0; i < subFirePosition.Length; i++)
-                    //    Instantiate(subBulletPrefab, subFirePosition[i].position, subFirePosition[i].rotation);
+
                     for (int i = 0; i < _subFirePosition.Length; i++)
                     {
 
-                        for (int j = 0; j <= 360; j = j + SubFireCycle)
-                        {
-                            GameObject subBullet = Instantiate(_subBulletPrefab, _subFirePosition[i].position, _subFirePosition[i].rotation);
-                            subBullet.transform.Rotate(0, 0, j);
-                        }
+                        Instantiate(_subBulletPrefab, _subFirePosition[i].position, _subFirePosition[i].rotation);
 
                     }
                     _nextFireTime = Time.time + FireCooldown;

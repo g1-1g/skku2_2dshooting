@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviour
     // 필요 속성
     public float Speed = 3;
     public float TempSpeed;
+    public int LifeChance = 3;
 
     public float Rush = 2f;
 

@@ -1,11 +1,13 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Bullet : MonoBehaviour
 {
     // 초기 이동 속도
     private float _speed = 4;
+    private float _demage = 60;
 
     // 목표 속도 및 가속 관련
     public float TargetSpeed = 15f;
@@ -48,5 +50,27 @@ public class Bullet : MonoBehaviour
         // 최종 위치 계산 및 적용 (월드 좌표 기준으로 위로 이동하면서 좌우 흔들림)
         Vector2 newPosition = _startPosition + Vector2.up * _verticalOffset + Vector2.right * xOffset;
         transform.position = newPosition;
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Enemy")) return;
+        
+        AttackEnemy (collision.gameObject);
+        Destroy(gameObject);
+    }
+
+    void AttackEnemy (GameObject target)
+    {
+        Enemy enemy = target.GetComponent<Enemy>();
+
+        enemy.Health = Math.Max(enemy.Health - _demage, 0);
+        Debug.Log(enemy.Health);
+
+        if (enemy.Health == 0)
+        {
+            Destroy(target.gameObject);
+        }
     }
 }
