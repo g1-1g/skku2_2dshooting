@@ -1,11 +1,18 @@
+using System;
 using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
 
-    public GameObject EnemyDirection;
-    public GameObject EnemyFollowing;
-    public GameObject EnemyFaster;
+    public GameObject[] Enemys;
+
+
+    public enum EnemyType
+    {
+        Direction,
+        Following,
+        Faster
+    }
 
     public float probabilityA = 0.4f;
     public float probabilityB = 0.3f;
@@ -36,27 +43,27 @@ public class EnemySpawn : MonoBehaviour
         
         if (Time.time > _nextSpawnTime)
         {
-            CooldownTime = Random.Range(MinCooldownTime, MaxCooldownTime);
+            CooldownTime = UnityEngine.Random.Range(MinCooldownTime, MaxCooldownTime);
 
-            float rand = Random.Range(0f, 1f);
+            float rand = UnityEngine.Random.Range(0f, 1f);
 
             if (rand < probabilityA)
             {
-                _leftTop += EnemyDirection.transform.localScale / 2;
-                _rightTop -= EnemyDirection.transform.localScale / 2;
-                Instantiate(EnemyDirection, new Vector2(Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
+                _leftTop += Enemys[(int)EnemyType.Direction].transform.localScale / 2;
+                _rightTop -= Enemys[(int)EnemyType.Direction].transform.localScale / 2;
+                Instantiate(Enemys[(int)EnemyType.Direction], new Vector2(UnityEngine.Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
             }
             else if (probabilityA < rand & rand < probabilityA+probabilityB)
             {
-                _leftTop += EnemyFaster.transform.localScale / 2;
-                _rightTop -= EnemyFaster.transform.localScale / 2;
-                Instantiate(EnemyFaster, new Vector2(Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
+                _leftTop += Enemys[(int)EnemyType.Following].transform.localScale / 2;
+                _rightTop -= Enemys[(int)EnemyType.Following].transform.localScale / 2;
+                Instantiate(Enemys[(int)EnemyType.Following], new Vector2(UnityEngine.Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
             }
             else
             {
-                _leftTop += EnemyFollowing.transform.localScale / 2;
-                _rightTop -= EnemyFollowing.transform.localScale / 2;
-                Instantiate(EnemyFollowing, new Vector2(Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
+                _leftTop += Enemys[(int)EnemyType.Faster].transform.localScale / 2;
+                _rightTop -= Enemys[(int)EnemyType.Faster].transform.localScale / 2;
+                Instantiate(Enemys[(int)EnemyType.Faster], new Vector2(UnityEngine.Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
                
             }
 
