@@ -9,9 +9,9 @@ public class EnemySpawn : MonoBehaviour
     private Vector3 _leftTop;
     private Vector3 _rightTop;
 
-    public float CooldownTime = 3;
+    public float CooldownTime = 1;
     public float MinCooldownTime = 1f;
-    public float MaxCooldownTime = 5f;
+    public float MaxCooldownTime = 2f;
     private float _nextSpawnTime = 0f;
 
 
@@ -20,8 +20,8 @@ public class EnemySpawn : MonoBehaviour
     {
         Camera cam = Camera.main;
 
-        _leftTop = cam.ViewportToWorldPoint(new Vector3(0, 1, transform.position.z - cam.transform.position.z));
-        _rightTop = cam.ViewportToWorldPoint(new Vector3(1, 1, transform.position.z - cam.transform.position.z));
+        _leftTop = cam.ViewportToWorldPoint(new Vector3(0, 1, transform.position.z - cam.transform.position.z)) + Enemy.transform.localScale/2;
+        _rightTop = cam.ViewportToWorldPoint(new Vector3(1, 1, transform.position.z - cam.transform.position.z)) - Enemy.transform.localScale / 2;
     }
 
     // Update is called once per frame
