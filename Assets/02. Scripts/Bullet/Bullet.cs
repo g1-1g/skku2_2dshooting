@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Enemy")) return;
-        Enemy enemy = collision.GetComponent<Enemy>();
+        EnemyGetDemage enemy = collision.GetComponent<EnemyGetDemage>();
 
         enemy.Hit(Demage);
         Destroy(gameObject);

@@ -1,0 +1,32 @@
+using System;
+using JetBrains.Annotations;
+using UnityEngine;
+
+public class EnemyStats : MonoBehaviour
+{
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("스탯")]
+    private float _speed = 2;
+
+    private float _health = 100;
+
+
+    public int Speed { get {return (int)_speed; } set { _speed = value; } }
+    public float Health { get { return _health; } set { _health = value; } }
+
+    private void Awake()
+    {
+ 
+    }
+    void Start()
+    {
+        
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
