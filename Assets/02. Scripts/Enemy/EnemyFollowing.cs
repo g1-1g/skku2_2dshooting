@@ -10,13 +10,13 @@ public class EnemyFollowing : Enemy
     void Start()
     {
         _player = GameObject.FindWithTag("Player");
-        Speed = 0.5f;
+        Speed = 2f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate((_player.transform.position - transform.position) * Speed * Time.deltaTime);
+        transform.Translate((_player.transform.position - transform.position).normalized * Speed * Time.deltaTime);
 
     }
 }

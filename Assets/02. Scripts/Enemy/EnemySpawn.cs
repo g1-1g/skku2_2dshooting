@@ -3,7 +3,11 @@ using UnityEngine;
 public class EnemySpawn : MonoBehaviour
 {
 
-    public GameObject Enemy;
+    public GameObject EnemyDirection;
+    public GameObject EnemyFollowing;
+
+    public float probabilityA = 0.7f;
+    public float probabilityB = 0.3f;
 
 
     private Vector3 _leftTop;
@@ -20,8 +24,8 @@ public class EnemySpawn : MonoBehaviour
     {
         Camera cam = Camera.main;
 
-        _leftTop = cam.ViewportToWorldPoint(new Vector3(0, 1, transform.position.z - cam.transform.position.z)) + Enemy.transform.localScale/2;
-        _rightTop = cam.ViewportToWorldPoint(new Vector3(1, 1, transform.position.z - cam.transform.position.z)) - Enemy.transform.localScale / 2;
+        _leftTop = cam.ViewportToWorldPoint(new Vector3(0, 1, transform.position.z - cam.transform.position.z));
+        _rightTop = cam.ViewportToWorldPoint(new Vector3(1, 1, transform.position.z - cam.transform.position.z));
     }
 
     // Update is called once per frame
@@ -31,7 +35,22 @@ public class EnemySpawn : MonoBehaviour
         if (Time.time > _nextSpawnTime)
         {
             CooldownTime = Random.Range(MinCooldownTime, MaxCooldownTime);
-            Instantiate(Enemy, new Vector2(Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
+
+            float rand = Random.Range(0f, 1f);
+            if (rand < probabilityA)
+            {
+                _leftTop += EnemyDirection.transform.localScale / 2;
+                _rightTop -= EnemyDirection.transform.localScale / 2;
+                Instantiate(EnemyDirection, new Vector2(Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
+            }
+            else if (rand > probabilityA)
+            {
+                _leftTop += EnemyFollowing.transform.localScale / 2;
+                _rightTop -= EnemyFollowing.transform.localScale / 2;
+                Instantiate(EnemyFollowing, new Vector2(Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
+            }
+                
+               
             _nextSpawnTime = Time.time + CooldownTime;
         }
             
