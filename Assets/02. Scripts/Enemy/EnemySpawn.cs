@@ -7,12 +7,6 @@ public class EnemySpawn : MonoBehaviour
     public GameObject[] Enemys;
 
 
-    public enum EnemyType
-    {
-        Direction,
-        Following,
-        Faster
-    }
 
     public float probabilityA = 0.4f;
     public float probabilityB = 0.3f;
@@ -49,9 +43,9 @@ public class EnemySpawn : MonoBehaviour
 
             if (rand < probabilityA)
             {
-                _leftTop += Enemys[(int)EnemyType.Direction].transform.localScale / 2;
-                _rightTop -= Enemys[(int)EnemyType.Direction].transform.localScale / 2;
-                Instantiate(Enemys[(int)EnemyType.Direction], new Vector2(UnityEngine.Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
+                _leftTop += Enemys[(int)EEnemyType.Direction].transform.localScale / 2;
+                _rightTop -= Enemys[(int)EEnemyType.Direction].transform.localScale / 2;
+                Instantiate(Enemys[(int)EEnemyType.Direction], new Vector2(UnityEngine.Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
             }
             else if (probabilityA < rand & rand < probabilityA+probabilityB)
             {

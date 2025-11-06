@@ -2,6 +2,13 @@ using System;
 using JetBrains.Annotations;
 using UnityEngine;
 
+
+public enum EEnemyType
+{
+    Direction,
+    Following,
+    Faster
+}
 public class EnemyStats : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -9,7 +16,7 @@ public class EnemyStats : MonoBehaviour
     private float _speed = 2;
 
     private float _health = 100;
-
+    
 
     public float Speed { get {return _speed; } set { _speed = value; } }
     public float Health { get { return _health; } set { _health = value; } }
