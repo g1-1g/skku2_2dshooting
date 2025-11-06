@@ -6,23 +6,19 @@ public class Enemy : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("스탯")]
-    [SerializeField]   
-    private float _speed = 2;
+    public float Speed = 2;
 
-    private float _health = 100;
+    public float Health = 100;
 
     void Start()
     {
-        _speed = 2;
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 direction = Vector2.down;
-        transform.Translate(direction * _speed * Time.deltaTime);
-
         
     }
 
@@ -47,10 +43,10 @@ public class Enemy : MonoBehaviour
     public void Hit(float Demage)
     {
 
-        _health = Math.Max(_health - Demage, 0);
-        Debug.Log(_health);
+        Health = Math.Max(Health - Demage, 0);
+        Debug.Log(Health);
 
-        if (_health == 0)
+        if (Health == 0)
         {
             Destroy(this.gameObject);
         }
