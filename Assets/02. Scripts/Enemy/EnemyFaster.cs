@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class EnemyFaster : MonoBehaviour
 {
-    private EnemyStats enemyStats;
-    private float originalHealth;
+    private EnemyStats _enemyStats;
+    private float _originalHealth;
     void Start()
     {
-        enemyStats = GetComponent <EnemyStats>();
-        originalHealth = enemyStats.Health;
+        _enemyStats = GetComponent <EnemyStats>();
+        _originalHealth = _enemyStats.Health;
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class EnemyFaster : MonoBehaviour
     {
         if (collision.GetComponent<Bullet>() != null)
         {
-            enemyStats.Speed += enemyStats.Speed * (enemyStats.Health / originalHealth);
+            _enemyStats.Speed += _enemyStats.Speed * (_enemyStats.Health / _originalHealth);
         }
     }
 }
