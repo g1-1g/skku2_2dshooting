@@ -2,17 +2,28 @@ using UnityEngine;
 
 public abstract class EnemyMove : MonoBehaviour
 {
-    
-    void Start()
+
+    private void Start()
     {
-        
+
+        OnStart();
     }
+
+    protected virtual void OnStart() { }
+
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        BeforeMove();
         Move();
+        AfterMove();
     }
 
+    protected virtual void BeforeMove() { }
+
     protected abstract void Move();
+
+    protected virtual void AfterMove() { }
+
 }

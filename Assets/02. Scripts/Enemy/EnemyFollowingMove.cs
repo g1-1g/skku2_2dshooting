@@ -7,8 +7,11 @@ public class EnemyFollowingMove : EnemyMove
     void Start()
     {
         _enemyStat = GetComponent<EnemyStats>();
-        _player = GameObject.FindWithTag("Player");  
+        _player = GameObject.FindWithTag("Player");
+
     }
+
+  
 
 
     protected override void Move()

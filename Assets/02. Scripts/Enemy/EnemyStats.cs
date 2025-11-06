@@ -11,7 +11,7 @@ public class EnemyStats : MonoBehaviour
     private float _health = 100;
 
 
-    public int Speed { get {return (int)_speed; } set { _speed = value; } }
+    public float Speed { get {return _speed; } set { _speed = value; } }
     public float Health { get { return _health; } set { _health = value; } }
 
     private void Awake()

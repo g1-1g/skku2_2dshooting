@@ -5,9 +5,11 @@ public class EnemySpawn : MonoBehaviour
 
     public GameObject EnemyDirection;
     public GameObject EnemyFollowing;
+    public GameObject EnemyFaster;
 
-    public float probabilityA = 0.7f;
+    public float probabilityA = 0.4f;
     public float probabilityB = 0.3f;
+    public float probabilityC = 0.3f;
 
 
     private Vector3 _leftTop;
@@ -15,7 +17,7 @@ public class EnemySpawn : MonoBehaviour
 
     public float CooldownTime = 1;
     public float MinCooldownTime = 1f;
-    public float MaxCooldownTime = 2f;
+    public float MaxCooldownTime = 3f;
     private float _nextSpawnTime = 0f;
 
 
@@ -37,20 +39,28 @@ public class EnemySpawn : MonoBehaviour
             CooldownTime = Random.Range(MinCooldownTime, MaxCooldownTime);
 
             float rand = Random.Range(0f, 1f);
+
             if (rand < probabilityA)
             {
                 _leftTop += EnemyDirection.transform.localScale / 2;
                 _rightTop -= EnemyDirection.transform.localScale / 2;
                 Instantiate(EnemyDirection, new Vector2(Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
             }
-            else if (rand > probabilityA)
+            else if (probabilityA < rand & rand < probabilityA+probabilityB)
+            {
+                _leftTop += EnemyFaster.transform.localScale / 2;
+                _rightTop -= EnemyFaster.transform.localScale / 2;
+                Instantiate(EnemyFaster, new Vector2(Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
+            }
+            else
             {
                 _leftTop += EnemyFollowing.transform.localScale / 2;
                 _rightTop -= EnemyFollowing.transform.localScale / 2;
                 Instantiate(EnemyFollowing, new Vector2(Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
-            }
-                
                
+            }
+
+
             _nextSpawnTime = Time.time + CooldownTime;
         }
             
