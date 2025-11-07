@@ -21,6 +21,12 @@ public class EnemyGetDemage : MonoBehaviour
 
         if (_enemyStat.Health == 0)
         {
+            ItemSpawn itemSpawn = GameObject.FindFirstObjectByType<ItemSpawn>();
+            if (itemSpawn != null)
+            {
+                itemSpawn.SpawnItem(this.transform.position);
+            }
+
             Destroy(this.gameObject);
         }
     }
