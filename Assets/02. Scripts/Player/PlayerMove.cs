@@ -70,14 +70,15 @@ public class PlayerMove : MonoBehaviour
 
         newPosition.y = Mathf.Clamp(newPosition.y, MinY, MaxY);
 
-        if (newPosition.x < MinX - obejctSize/2)
-        {
-            newPosition.x = MaxX + obejctSize/2;
-        }
-        if (newPosition.x > MaxX + obejctSize/2)
-        {
-            newPosition.x = MinX - obejctSize/2;
-        }
+        //if (newPosition.x < MinX - obejctSize/2)
+        //{
+        //    newPosition.x = MaxX + obejctSize/2;
+        //}
+        //if (newPosition.x > MaxX + obejctSize/2)
+        //{
+        //    newPosition.x = MinX - obejctSize/2;
+        //}
+        newPosition.x = Mathf.Clamp(newPosition.x, MinX + obejctSize / 2 , MaxX - obejctSize / 2);
 
         transform.position = newPosition; // 최종 위치 적용
 
