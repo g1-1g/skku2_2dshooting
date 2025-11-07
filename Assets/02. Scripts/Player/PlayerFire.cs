@@ -78,7 +78,17 @@ public class PlayerFire : MonoBehaviour
             AttackMode = 2;
         }
 
-
-
+        
     }
+    public void UpgradeFireRate(float amount)
+    {
+        FireCooldown -= amount;
+        if (FireCooldown < 0.1f)
+        {
+            FireCooldown = 0.1f;
+        }
+        Debug.Log("Fire Rate Upgraded! ");
+    }
+
+
 }

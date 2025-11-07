@@ -8,9 +8,14 @@ public class PlayerMove : MonoBehaviour
 
 
     // 필요 속성
-    public float Speed = 3;
+    private float _speed = 3;
+    public float Speed { get { return _speed; } set { _speed = value; } }
+
     public float TempSpeed;
-    public int LifeChance = 3;
+
+    private int _lifeChance = 3;
+    public int LifeChance { get { return _lifeChance; } set { _lifeChance = value; } }
+
 
     public float Rush = 2f;
 
@@ -37,6 +42,7 @@ public class PlayerMove : MonoBehaviour
   
     private void Start()
     {
+        
         Camera cam = Camera.main;
 
         Vector3 leftBottom = cam.ViewportToWorldPoint(new Vector3(0, 0, transform.position.z - cam.transform.position.z));
@@ -49,7 +55,7 @@ public class PlayerMove : MonoBehaviour
         MaxY = 0- obejctSize/2;
 
 
-        Speed = Mathf.Clamp(Speed, MinSpeed, MaxSpeed);
+        _speed = Mathf.Clamp(_speed, MinSpeed, MaxSpeed);
         _originPosition = transform.position;
     }
 
@@ -66,7 +72,7 @@ public class PlayerMove : MonoBehaviour
         Vector2 position = transform.position; //현재 위치
 
 
-        Vector2 newPosition = position + direction * Speed * Time.deltaTime;
+        Vector2 newPosition = position + direction * _speed * Time.deltaTime;
 
         newPosition.y = Mathf.Clamp(newPosition.y, MinY, MaxY);
 
@@ -84,29 +90,29 @@ public class PlayerMove : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Speed = Mathf.Clamp(Speed + SpeedChangeAmount, MinSpeed, MaxSpeed);
+            _speed = Mathf.Clamp(_speed + SpeedChangeAmount, MinSpeed, MaxSpeed);
 
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Speed = Mathf.Clamp(Speed - SpeedChangeAmount, MinSpeed, MaxSpeed);
+            _speed = Mathf.Clamp(_speed - SpeedChangeAmount, MinSpeed, MaxSpeed);
 
         }
 
         if (Input.GetKeyDown((KeyCode.LeftShift)))
         {
-            TempSpeed = Speed;
-            Speed = Speed * Rush;
+            TempSpeed = _speed;
+            _speed = _speed * Rush;
         };
         if (Input.GetKeyUp((KeyCode.LeftShift)))
         {
-            Speed = TempSpeed;
+            _speed = TempSpeed;
         };
         
         //원점이동
         if (Input.GetKey(KeyCode.R))
         { 
-            transform.Translate((_originPosition - transform.position).normalized * Speed * Time.deltaTime);
+            transform.Translate((_originPosition - transform.position).normalized * _speed * Time.deltaTime);
         };
 
         
@@ -115,10 +121,10 @@ public class PlayerMove : MonoBehaviour
     }
     public void Hit()
     {
-        LifeChance -= 1;
-        if (LifeChance > 0)
+        _lifeChance -= 1;
+        if (_lifeChance > 0)
         {
-            Debug.Log("Player Life Chance: " + LifeChance);
+            Debug.Log("Player Life Chance: " + _lifeChance);
         }
         else
         {
@@ -127,4 +133,19 @@ public class PlayerMove : MonoBehaviour
         }
 
     }
+
+    public void MoveSpeedUp(float amount)
+    {
+        _speed += amount;
+        Debug.Log("Player Speed Up ");
+    }
+
+    public void LifeChaceUp()
+    {
+        _lifeChance += 1;
+        Debug.Log("Player Life Chance Up: " + _lifeChance);
+    }
+
+
+
 }
