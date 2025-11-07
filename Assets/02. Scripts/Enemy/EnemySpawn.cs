@@ -15,6 +15,8 @@ public class EnemySpawn : MonoBehaviour
 
     private Vector3 _leftTop;
     private Vector3 _rightTop;
+    private Vector3 _spawnLeftTop;
+    private Vector3 _spawnRightTop;
 
     public float CooldownTime = 1;
     public float MinCooldownTime = 1f;
@@ -43,20 +45,20 @@ public class EnemySpawn : MonoBehaviour
 
             if (rand < probabilityA)
             {
-                _leftTop += Enemys[(int)EEnemyType.Direction].transform.localScale / 2;
-                _rightTop -= Enemys[(int)EEnemyType.Direction].transform.localScale / 2;
+                _spawnLeftTop = _leftTop + Enemys[(int)EEnemyType.Direction].transform.localScale / 2;
+                _spawnRightTop =  _rightTop - Enemys[(int)EEnemyType.Direction].transform.localScale / 2;
                 Instantiate(Enemys[(int)EEnemyType.Direction], new Vector2(UnityEngine.Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
             }
             else if (probabilityA < rand & rand < probabilityA+probabilityB)
             {
-                _leftTop += Enemys[(int)EEnemyType.Following].transform.localScale / 2;
-                _rightTop -= Enemys[(int)EEnemyType.Following].transform.localScale / 2;
+                _spawnLeftTop = _leftTop + Enemys[(int)EEnemyType.Following].transform.localScale / 2;
+                _spawnRightTop = _rightTop - Enemys[(int)EEnemyType.Following].transform.localScale / 2;
                 Instantiate(Enemys[(int)EEnemyType.Following], new Vector2(UnityEngine.Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
             }
             else
             {
-                _leftTop += Enemys[(int)EEnemyType.Faster].transform.localScale / 2;
-                _rightTop -= Enemys[(int)EEnemyType.Faster].transform.localScale / 2;
+                _spawnLeftTop = _leftTop + Enemys[(int)EEnemyType.Faster].transform.localScale / 2;
+                _spawnRightTop = _rightTop - Enemys[(int)EEnemyType.Faster].transform.localScale / 2;
                 Instantiate(Enemys[(int)EEnemyType.Faster], new Vector2(UnityEngine.Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
                
             }
