@@ -45,8 +45,21 @@ public class PlayerMove : MonoBehaviour
     private void Update()
     {
 
-        float h = Input.GetAxis("Horizontal"); 
-        float v = Input.GetAxis("Vertical"); 
+        switch(_playerStat.Mode)
+        {
+            case 1:
+                AutoMove();
+                break;
+            case 2:
+                BasicMove();
+                break;
+        }
+    }
+
+    private void BasicMove()
+    {
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 
         Vector2 direction = new Vector2(h, v);
 
@@ -67,19 +80,36 @@ public class PlayerMove : MonoBehaviour
         //{
         //    newPosition.x = MinX - obejctSize/2;
         //}
-        newPosition.x = Mathf.Clamp(newPosition.x, MinX + obejctSize / 2 , MaxX - obejctSize / 2);
+        newPosition.x = Mathf.Clamp(newPosition.x, MinX + obejctSize / 2, MaxX - obejctSize / 2);
 
         transform.position = newPosition; // 최종 위치 적용
 
-        
 
-        
-        
         //원점이동
         if (Input.GetKey(KeyCode.R))
-        { 
+        {
             transform.Translate((_originPosition - transform.position).normalized * _playerStat.Speed * Time.deltaTime);
-        };
+        }
+        ;
+    }
+
+    private void AutoMove()
+    {
+        Vector2 position = transform.position; //현재 위치
+        Vector2 newPosition = position + Vector2.right * _playerStat.Speed * Time.deltaTime;
+        
+
+
+        newPosition.y = Mathf.Clamp(newPosition.y, MinY, MaxY);
+        if (newPosition.x < MinX - obejctSize / 2)
+        {
+            newPosition.x = MaxX + obejctSize / 2;
+        }
+        if (newPosition.x > MaxX + obejctSize / 2)
+        {
+            newPosition.x = MinX - obejctSize / 2;
+        }
+        transform.position = newPosition; // 최종 위치 적용
     }
 
 }

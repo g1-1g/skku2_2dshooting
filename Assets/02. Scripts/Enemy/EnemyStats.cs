@@ -20,20 +20,27 @@ public class EnemyStats : MonoBehaviour
 
     public float Speed { get {return _speed; } set { _speed = value; } }
     public float Health { get { return _health; } set { _health = value; } }
+    private EnemyManager EnemyManager;
 
     private void Awake()
     {
- 
     }
     void Start()
     {
-        
-        
+        EnemyManager = GameObject.FindFirstObjectByType<EnemyManager>();
+        EnemyManager.AddEnemy(this);
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void OnDestroy()
+    {
+        EnemyManager.RemoveEnemy(this);
     }
 }

@@ -12,12 +12,26 @@ public class PlayerStat : MonoBehaviour
     private float _speed = 3;
     public float Speed { get { return _speed; } set { _speed = value; } }
 
+    private int _mode = 2; // 1: 오토, 2: 조작
+    public int Mode { get { return _mode; } set { _mode = value; } }
 
     private float _minSpeed = 1f;
     private float _maxSpeed = 10f;
     public float MinSpeed { get { return _minSpeed;  } set { _minSpeed = value;  } } // 최소 속도
     public float MaxSpeed { get { return _maxSpeed; } set { _maxSpeed = value; } } // 최대 속도
 
+    public void Update()
+    {
+        if (Input.GetKeyDown("1"))
+        {
+            _mode = 1;
+        }
+        if (Input.GetKeyDown("2"))
+        {
+            _mode = 2;
+        }
+
+    }
     public void Hit()
     {
         _lifeChance -= 1;
@@ -41,4 +55,6 @@ public class PlayerStat : MonoBehaviour
         }
         
     }
+
+
 }

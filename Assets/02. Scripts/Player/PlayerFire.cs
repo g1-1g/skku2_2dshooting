@@ -13,25 +13,28 @@ public class PlayerFire : MonoBehaviour
     private Transform[] _subFirePosition;
 
     public Vector3 ScaleVector;
-    public int AttackMode;
+
 
     private float _nextFireTime;
     public float FireCooldown;
     public int SubFireCycle;
 
+    private PlayerStat _playerStat;
 
     void Start()
     {
         _nextFireTime = 0f;
-        AttackMode = 2;
+
         FireCooldown = 1;
         SubFireCycle = 20;
+
+        _playerStat = GetComponent<PlayerStat>();
     }
 
     // Update is called once per frame
     void Update()
     {      
-        switch(AttackMode)
+        switch(_playerStat.Mode)
         {
             case 1:
                 if (Time.time >= _nextFireTime)
@@ -69,15 +72,7 @@ public class PlayerFire : MonoBehaviour
                 
                 break;
         }
-        if (Input.GetKeyDown("1"))
-        {
-            AttackMode = 1;  
-        }
-        if (Input.GetKeyDown("2"))
-        {
-            AttackMode = 2;
-        }
-
+        
         
     }
     public void UpgradeFireRate(float amount)

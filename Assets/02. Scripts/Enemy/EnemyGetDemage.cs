@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyGetDemage : MonoBehaviour
 {
     private EnemyStats _enemyStat;
+
     void Start()
     {
         _enemyStat = GetComponent<EnemyStats>();
