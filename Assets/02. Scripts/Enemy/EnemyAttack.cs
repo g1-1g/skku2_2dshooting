@@ -15,7 +15,7 @@ public class EnemyAttack : MonoBehaviour
     }
     public void AttackPlayer(GameObject gameObject)
     {
-        PlayerMove player = gameObject.GetComponent<PlayerMove>();
+        PlayerStat player = gameObject.GetComponent<PlayerStat>();
         player.Hit();
         Destroy(this.gameObject);
     }

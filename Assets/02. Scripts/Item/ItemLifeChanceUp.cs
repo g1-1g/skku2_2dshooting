@@ -9,7 +9,7 @@ public class ItemLifeChanceUp : MonoBehaviour
     {
         if (collision.CompareTag("Player")) 
         {
-            PlayerMove player = collision.GetComponent<PlayerMove>();
+            PlayerStat player = collision.GetComponent<PlayerStat>();
             player.LifeChaceUp();
             Destroy(this.gameObject);
         }

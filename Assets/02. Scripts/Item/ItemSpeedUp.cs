@@ -9,7 +9,7 @@ public class ItemSpeedUp : MonoBehaviour
     {
         if (collision.CompareTag("Player")) 
         {
-            PlayerMove player = collision.GetComponent<PlayerMove>();
+            PlayerSpeedChange player = collision.GetComponent<PlayerSpeedChange>();
             player.MoveSpeedUp(SpeedUp);
             Destroy(this.gameObject);
         }
