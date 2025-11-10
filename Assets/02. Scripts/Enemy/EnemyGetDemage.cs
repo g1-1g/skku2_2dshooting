@@ -4,10 +4,12 @@ using UnityEngine;
 public class EnemyGetDemage : MonoBehaviour
 {
     private EnemyStats _enemyStat;
+    private Animator _animator;
 
     void Start()
     {
         _enemyStat = GetComponent<EnemyStats>();
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -19,7 +21,12 @@ public class EnemyGetDemage : MonoBehaviour
 
         _enemyStat.Health = Math.Max(_enemyStat.Health - Demage, 0);
         Debug.Log(_enemyStat.Health);
+        if (_animator != null)
+        {
+            _animator.SetTrigger("isHit");
 
+        }
+            
         if (_enemyStat.Health == 0)
         {
             ItemSpawn itemSpawn = GameObject.FindFirstObjectByType<ItemSpawn>();
@@ -30,6 +37,7 @@ public class EnemyGetDemage : MonoBehaviour
 
             Destroy(this.gameObject);
         }
+
     }
 
 }

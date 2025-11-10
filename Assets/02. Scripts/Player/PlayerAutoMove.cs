@@ -6,6 +6,7 @@ public class PlayerAutoMove : MonoBehaviour
     private PlayerStat _playerStat;
     
     private EnemyManager _enemyManager;
+    private Animator _animator;
 
     [Header("이동 제한 영역")]
     public float MinX = -8f; // 예시 값
@@ -24,7 +25,7 @@ public class PlayerAutoMove : MonoBehaviour
     {
         _playerStat = GetComponent<PlayerStat>();
         _enemyManager = GameObject.FindFirstObjectByType<EnemyManager>();
-
+        _animator = GetComponent<Animator>();
 
 
         Camera cam = Camera.main;
@@ -76,11 +77,23 @@ public class PlayerAutoMove : MonoBehaviour
 
         newPosition = direction * _playerStat.Speed * Time.deltaTime;
 
+
         float nextY = Mathf.Clamp(transform.position.y + newPosition.y, MinY, MaxY);
         float nextX = Mathf.Clamp(transform.position.x + newPosition.x, MinX + _objectSize / 2, MaxX - _objectSize / 2);
         newPosition.y = nextY - transform.position.y;
         newPosition.x = nextX - transform.position.x;
-
+        if (newPosition.x > 0)
+        {
+            _animator.SetBool("isLeft", false);
+            _animator.SetBool("isRight", true);
+        }
+         else if (newPosition.x < 0)
+        {
+            _animator.SetBool("isRight", false);
+            _animator.SetBool("isLeft", true);
+        }
+           
+       
         transform.Translate(newPosition); // 최종 위치 적용
 
     }

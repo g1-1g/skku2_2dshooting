@@ -16,6 +16,7 @@ public class EnemyFollowingMove : EnemyMove
 
     protected override void Move()
     {
+        if (_player == null) return;
         transform.Translate((_player.transform.position - transform.position).normalized * _enemyStat.Speed * Time.deltaTime);
     }
 }

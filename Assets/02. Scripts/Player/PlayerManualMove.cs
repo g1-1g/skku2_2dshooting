@@ -4,6 +4,7 @@ public class PlayerManualMove : MonoBehaviour
 {
 
     private PlayerStat _playerStat;
+    private Animator _animator;
 
     [Header("이동 제한 영역")]
     public float MinX = -8f; // 예시 값
@@ -19,7 +20,7 @@ public class PlayerManualMove : MonoBehaviour
     void Start()
     {
         _playerStat = GetComponent<PlayerStat>();
-
+        _animator = GetComponent<Animator>();
 
         Camera cam = Camera.main;
 
@@ -47,6 +48,18 @@ public class PlayerManualMove : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
+        print(h);
+
+        if (h > 0)
+            _animator.SetBool("isRight", true);
+        else if (h < 0)
+            _animator.SetBool("isLeft", true);
+        else
+        {
+            _animator.SetBool("isRight", false);
+            _animator.SetBool("isLeft", false);
+        }
+            
 
         Vector2 direction = new Vector2(h, v);
 
