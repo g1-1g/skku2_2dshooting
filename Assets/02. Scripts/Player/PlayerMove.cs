@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour
 
 
     [Header("시작위치")]
-    public Vector3 _originPosition;
+    private Vector3 _originPosition;
 
     [Header("이동 제한 영역")]
     public float MinX = -8f; // 예시 값
@@ -22,11 +22,10 @@ public class PlayerMove : MonoBehaviour
     public float MaxY = 4f;  // 예시 값
 
     [Header("오브젝트 크기")]
-    public float objectSize ;
+    private float _objectSize ;
 
     [Header("자동 모드")]
-    private float keepDistance = 7f;
-    private Vector2 _moveDir = Vector2.zero;
+    private float _keepDistance = 7f;
 
 
     private void Start()
@@ -39,11 +38,11 @@ public class PlayerMove : MonoBehaviour
         Vector3 leftBottom = cam.ViewportToWorldPoint(new Vector3(0, 0, transform.position.z - cam.transform.position.z));
         Vector3 rightTop = cam.ViewportToWorldPoint(new Vector3(1, 1, transform.position.z - cam.transform.position.z));
 
-        objectSize = transform.localScale.x;
+        _objectSize = transform.localScale.x;
         MinX = leftBottom.x;
         MaxX = rightTop.x;
-        MinY = leftBottom.y + objectSize / 2;
-        MaxY = 0 - objectSize / 2;
+        MinY = leftBottom.y + _objectSize / 2;
+        MaxY = 0 - _objectSize / 2;
 
 
         _playerStat.Speed = Mathf.Clamp(_playerStat.Speed, _playerStat.MinSpeed, _playerStat.MaxSpeed);
@@ -80,7 +79,7 @@ public class PlayerMove : MonoBehaviour
 
         newPosition.y = Mathf.Clamp(newPosition.y, MinY, MaxY);
 
-        newPosition.x = Mathf.Clamp(newPosition.x, MinX + objectSize / 2, MaxX - objectSize / 2);
+        newPosition.x = Mathf.Clamp(newPosition.x, MinX + _objectSize / 2, MaxX - _objectSize / 2);
 
         transform.position = newPosition; // 최종 위치 적용
 
@@ -105,7 +104,7 @@ public class PlayerMove : MonoBehaviour
 
         foreach (GameObject monster in _enemyManager.Monsters)
         {
-            if (monster.transform.position.y < MinY + objectSize) 
+            if (monster.transform.position.y < MinY + _objectSize) 
                 continue;
            float dist = Vector2.SqrMagnitude((Vector2)monster.transform.position- position);
            if (dist < closestDist)
@@ -119,7 +118,7 @@ public class PlayerMove : MonoBehaviour
 
         Vector2 newPosition;
         Vector2 direction = ((Vector2)target.transform.position - position).normalized;
-        if (closestDist < keepDistance)
+        if (closestDist < _keepDistance)
         {
             direction = -direction;
         }
@@ -131,7 +130,7 @@ public class PlayerMove : MonoBehaviour
             newPosition = direction * _playerStat.Speed * Time.deltaTime;
 
         float nextY = Mathf.Clamp(transform.position.y + newPosition.y, MinY, MaxY);
-        float nextX = Mathf.Clamp(transform.position.x + newPosition.x, MinX + objectSize / 2, MaxX - objectSize / 2);
+        float nextX = Mathf.Clamp(transform.position.x + newPosition.x, MinX + _objectSize / 2, MaxX - _objectSize / 2);
         newPosition.y = nextY - transform.position.y;
         newPosition.x = nextX - transform.position.x;
 
