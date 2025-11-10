@@ -9,7 +9,7 @@ public class PlayerStat : MonoBehaviour
 
 
     [Header("속도 조절 관련 속성")]
-    private float _speed = 3;
+    private float _speed = 2;
     public float Speed { get { return _speed; } set { _speed = value; } }
 
     private int _mode = 2; // 1: 오토, 2: 조작

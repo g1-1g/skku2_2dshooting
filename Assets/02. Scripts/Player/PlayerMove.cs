@@ -80,14 +80,6 @@ public class PlayerMove : MonoBehaviour
 
         newPosition.y = Mathf.Clamp(newPosition.y, MinY, MaxY);
 
-        //if (newPosition.x < MinX - obejctSize/2)
-        //{
-        //    newPosition.x = MaxX + obejctSize/2;
-        //}
-        //if (newPosition.x > MaxX + obejctSize/2)
-        //{
-        //    newPosition.x = MinX - obejctSize/2;
-        //}
         newPosition.x = Mathf.Clamp(newPosition.x, MinX + objectSize / 2, MaxX - objectSize / 2);
 
         transform.position = newPosition; // 최종 위치 적용
@@ -129,20 +121,14 @@ public class PlayerMove : MonoBehaviour
         Vector2 direction = ((Vector2)target.transform.position - position).normalized;
         if (closestDist < keepDistance)
         {
-            if (position.y > MaxY- objectSize * 2)
-            {
-                direction = Vector2.down;
-            }
-            else
-            {
-                direction = -direction;
-            }   
+            direction = -direction;
+        }
+        else
+        {
+            direction = direction * Vector2.right;
         }
 
-        //_moveDir = Vector2.Lerp(_moveDir, direction, 0.1f * Time.deltaTime);
-        newPosition = direction * _playerStat.Speed * Time.deltaTime;
-
-
+            newPosition = direction * _playerStat.Speed * Time.deltaTime;
 
         float nextY = Mathf.Clamp(transform.position.y + newPosition.y, MinY, MaxY);
         float nextX = Mathf.Clamp(transform.position.x + newPosition.x, MinX + objectSize / 2, MaxX - objectSize / 2);

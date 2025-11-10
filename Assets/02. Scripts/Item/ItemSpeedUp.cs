@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ItemSpeedUp : MonoBehaviour
 {
-    public float SpeedUp = 2.0f;
+    public float SpeedUp = 1.0f;
 
 
     private void OnTriggerEnter2D(Collider2D collision)

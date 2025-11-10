@@ -7,9 +7,6 @@ public class EnemySpawn : MonoBehaviour
     public GameObject[] Enemys;
 
 
-
-
-
     public float probabilityA = 0.4f;
     public float probabilityB = 0.3f;
     public float probabilityC = 0.3f;
@@ -22,7 +19,7 @@ public class EnemySpawn : MonoBehaviour
 
     public float CooldownTime = 1;
     public float MinCooldownTime = 1f;
-    public float MaxCooldownTime = 3f;
+    public float MaxCooldownTime = 2f;
     private float _nextSpawnTime = 0f;
 
 

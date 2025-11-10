@@ -17,6 +17,7 @@ public class PlayerFire : MonoBehaviour
 
     private float _nextFireTime;
     public float FireCooldown;
+    public float MinFireCooldown = 0.3f;
     public int SubFireCycle;
 
     private PlayerStat _playerStat;
@@ -77,10 +78,11 @@ public class PlayerFire : MonoBehaviour
     }
     public void UpgradeFireRate(float amount)
     {
+
         FireCooldown -= amount;
-        if (FireCooldown < 0.1f)
+        if (FireCooldown < MinFireCooldown)
         {
-            FireCooldown = 0.1f;
+            FireCooldown = MinFireCooldown;
         }
         Debug.Log("Fire Rate Upgraded! ");
     }

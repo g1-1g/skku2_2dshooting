@@ -6,8 +6,9 @@ public class PlayerSpeedChange : MonoBehaviour
 
     public float TempSpeed;
     public float Rush = 2f;
+    public float MaxSpeed = 10f;
 
-    
+
     public float SpeedChangeAmount = 1f; // 속도 변경량
 
     void Start()
@@ -45,6 +46,12 @@ public class PlayerSpeedChange : MonoBehaviour
     }
     public void MoveSpeedUp(float amount)
     {
+        
+        if (_playerStat.Speed + amount > MaxSpeed)
+        {
+            _playerStat.Speed = MaxSpeed;
+            return;
+        }
         _playerStat.Speed += amount;
         Debug.Log("Player Speed Up ");
     }
