@@ -1,11 +1,13 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
 
-    private EnemyStats[] _enermies; 
-    public EnemyStats[] Enermies { get { return _enermies; } } 
+    private HashSet<GameObject> _monsters = new HashSet<GameObject>();
+    public HashSet<GameObject> Monsters { get { return _monsters; } }
+
     void Start()
     {
         
@@ -15,12 +17,12 @@ public class EnemyManager : MonoBehaviour
     {
         
     }
-    public void AddEnemy(EnemyStats enemy)
+    public void AddEnemy(GameObject enemy)
     {
-        _enermies = _enermies.Append(enemy).ToArray();
+        _monsters.Add(enemy);
     }
-    public void RemoveEnemy(EnemyStats enemy)
+    public void RemoveEnemy(GameObject enemy)
     {
-
+        _monsters.Remove(enemy);
     }
 }

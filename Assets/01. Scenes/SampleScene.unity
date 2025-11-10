@@ -257,7 +257,6 @@ MonoBehaviour:
   - {fileID: 1400220196}
   - {fileID: 591600891}
   ScaleVector: {x: 0, y: 0, z: 0}
-  AttackMode: 1
   FireCooldown: 0.6
   SubFireCycle: 0
 --- !u!50 &36815261
@@ -849,6 +848,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1278591998}
+  - component: {fileID: 1278591999}
   - component: {fileID: 1278591997}
   m_Layer: 0
   m_Name: GameManager
@@ -892,6 +892,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1278591999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278591996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27ff96b4da34ac43831198e1dfd8e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1283210559
 GameObject:
   m_ObjectHideFlags: 0

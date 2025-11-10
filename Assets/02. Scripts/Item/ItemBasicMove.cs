@@ -8,8 +8,11 @@ public class ItemBasicMove : MonoBehaviour
     private float _currentTime = 0f;
     private float _speed = 5f;
 
+    GameObject player;
+
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
 
         _currentTime = Time.time;
     }
@@ -28,6 +31,7 @@ public class ItemBasicMove : MonoBehaviour
                 return;
             }
         }
-        gameObject.transform.Translate(Vector3.down * Time.deltaTime * _speed);
+        if (player == null) return;
+        gameObject.transform.Translate((player.transform.position - transform.position).normalized * Time.deltaTime * _speed);
     }
 }

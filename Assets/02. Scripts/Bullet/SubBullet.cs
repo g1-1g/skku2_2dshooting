@@ -4,12 +4,10 @@ using UnityEngine;
 public class SubBullet : Bullet
 {
 
-
-  
     void Start()
     {
         Demage = 30;
-        Speed = 5;
+        Speed = 2;
         TargetSpeed = 10f;
 
         AccelTime = 1.5f;

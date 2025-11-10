@@ -28,9 +28,7 @@ public class EnemyStats : MonoBehaviour
     void Start()
     {
         EnemyManager = GameObject.FindFirstObjectByType<EnemyManager>();
-        EnemyManager.AddEnemy(this);
-
-
+        EnemyManager.AddEnemy(this.gameObject);
     }
 
     // Update is called once per frame
@@ -41,6 +39,6 @@ public class EnemyStats : MonoBehaviour
 
     public void OnDestroy()
     {
-        EnemyManager.RemoveEnemy(this);
+        EnemyManager.RemoveEnemy(this.gameObject);
     }
 }
