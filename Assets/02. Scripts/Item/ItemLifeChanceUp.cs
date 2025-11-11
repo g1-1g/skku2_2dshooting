@@ -1,17 +1,10 @@
 using UnityEngine;
 
-public class ItemLifeChanceUp : MonoBehaviour
+public class ItemLifeChanceUp : Item
 {
-
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void ApplyEffect(GameObject player)
     {
-        if (collision.CompareTag("Player")) 
-        {
-            PlayerStat player = collision.GetComponent<PlayerStat>();
-            player.LifeChaceUp();
-            Destroy(this.gameObject);
-        }
+        PlayerStat playerStat = player.GetComponent<PlayerStat>();
+        playerStat.LifeChaceUp();
     }
 }

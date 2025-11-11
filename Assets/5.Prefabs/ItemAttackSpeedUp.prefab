@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78a92b7d0916b74e9c9986bcb5509d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickupEffect: {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd, type: 3}
   AttackspeedUp: 0.1
 --- !u!114 &4632464097143155879
 MonoBehaviour:

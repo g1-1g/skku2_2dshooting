@@ -140,7 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdd04c7fbf680348b0da456e0b18ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedUp: 2
+  PickupEffect: {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd, type: 3}
+  SpeedUp: 1
 --- !u!114 &7770634516056205762
 MonoBehaviour:
   m_ObjectHideFlags: 0

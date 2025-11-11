@@ -11,8 +11,6 @@ public class EnemyFollowingMove : EnemyMove
 
     }
 
-  
-
 
     protected override void Move()
     {
