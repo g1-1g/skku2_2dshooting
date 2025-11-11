@@ -2,17 +2,15 @@ using UnityEngine;
 
 public class BackgroundScroll : MonoBehaviour
 {
-
-    public Material BackgroundMaterial;
-    public float scrollSpeed = 0.1f;
-
-    private void Start()
+   
+    void Start()
     {
-        BackgroundMaterial = GetComponent<Renderer>().material;
+        
     }
-    private void Update()
+
+    // Update is called once per frame
+    void Update()
     {
-        Vector2 direction = Vector2.up;
-        BackgroundMaterial.mainTextureOffset += direction * scrollSpeed * Time.deltaTime;
+        
     }
 }
