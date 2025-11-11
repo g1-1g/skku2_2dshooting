@@ -19,7 +19,7 @@ public class EnemyFollowingMove : EnemyMove
         transform.Translate(direction.normalized * _enemyStat.Speed * Time.deltaTime);
 
         float angle = Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle - 90 + 180);
+        transform.rotation = Quaternion.Euler(0, 0, angle +90 );
 
     }
 }

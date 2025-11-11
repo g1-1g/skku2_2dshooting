@@ -6,6 +6,8 @@ public class EnemyGetDamage : MonoBehaviour
     private EnemyStats _enemyStat;
     private Animator _animator;
 
+    private ItemSpawn _itemSpawn;
+
     [Header("Demage Effect")]
     public GameObject DamageEffect;
 
@@ -13,6 +15,7 @@ public class EnemyGetDamage : MonoBehaviour
     {
         _enemyStat = GetComponent<EnemyStats>();
         _animator = GetComponent<Animator>();
+        _itemSpawn = GameObject.FindFirstObjectByType<ItemSpawn>();
     }
 
     void Update()
@@ -31,14 +34,12 @@ public class EnemyGetDamage : MonoBehaviour
             
         if (_enemyStat.Health == 0)
         {
-            ItemDrop();
-            MakeExplosionEffect();
-            Destroy(this.gameObject);
+            Die();
         }
 
     }
 
-    public void CriticalHit()
+    public void Die()
     {
 
         ItemDrop();
@@ -54,10 +55,9 @@ public class EnemyGetDamage : MonoBehaviour
 
     public void ItemDrop()
     {
-        ItemSpawn itemSpawn = GameObject.FindFirstObjectByType<ItemSpawn>();
-        if (itemSpawn != null)
+        if (_itemSpawn != null)
         {
-            itemSpawn.SpawnItem(this.transform.position);
+            _itemSpawn.SpawnItem(this.transform.position);
         }
     }
 
