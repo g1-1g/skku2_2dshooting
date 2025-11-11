@@ -31,20 +31,34 @@ public class EnemyGetDamage : MonoBehaviour
             
         if (_enemyStat.Health == 0)
         {
-            ItemSpawn itemSpawn = GameObject.FindFirstObjectByType<ItemSpawn>();
-            if (itemSpawn != null)
-            {
-                itemSpawn.SpawnItem(this.transform.position);
-            }
+            ItemDrop();
             MakeExplosionEffect();
             Destroy(this.gameObject);
         }
 
     }
 
+    public void CriticalHit()
+    {
+
+        ItemDrop();
+        MakeExplosionEffect();
+        Destroy(this.gameObject);
+        
+    }
+
     private void MakeExplosionEffect()
     {
         Instantiate(DamageEffect, this.transform.position, Quaternion.identity);
+    }
+
+    public void ItemDrop()
+    {
+        ItemSpawn itemSpawn = GameObject.FindFirstObjectByType<ItemSpawn>();
+        if (itemSpawn != null)
+        {
+            itemSpawn.SpawnItem(this.transform.position);
+        }
     }
 
 }
