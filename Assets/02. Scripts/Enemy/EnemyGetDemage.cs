@@ -6,6 +6,9 @@ public class EnemyGetDemage : MonoBehaviour
     private EnemyStats _enemyStat;
     private Animator _animator;
 
+    [Header("Demage Effect")]
+    public GameObject demageEffect;
+
     void Start()
     {
         _enemyStat = GetComponent<EnemyStats>();
@@ -33,10 +36,15 @@ public class EnemyGetDemage : MonoBehaviour
             {
                 itemSpawn.SpawnItem(this.transform.position);
             }
-
+            MakeExplosionEffect();
             Destroy(this.gameObject);
         }
 
+    }
+
+    private void MakeExplosionEffect()
+    {
+        Instantiate(demageEffect, this.transform.position, Quaternion.identity);
     }
 
 }

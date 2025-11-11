@@ -31,14 +31,10 @@ public class EnemyStats : MonoBehaviour
         EnemyManager.AddEnemy(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void OnDestroy()
     {
+        
         EnemyManager.RemoveEnemy(this.gameObject);
     }
 }
