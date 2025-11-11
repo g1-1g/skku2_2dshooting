@@ -6,6 +6,8 @@ public class EnemyGetDamage : MonoBehaviour
     private EnemyStats _enemyStat;
     private Animator _animator;
 
+    private ItemSpawn _itemSpawn;
+
     [Header("Demage Effect")]
     public GameObject DamageEffect;
 
@@ -13,6 +15,7 @@ public class EnemyGetDamage : MonoBehaviour
     {
         _enemyStat = GetComponent<EnemyStats>();
         _animator = GetComponent<Animator>();
+        _itemSpawn = GameObject.FindFirstObjectByType<ItemSpawn>();
     }
 
     void Update()
@@ -31,20 +34,31 @@ public class EnemyGetDamage : MonoBehaviour
             
         if (_enemyStat.Health == 0)
         {
-            ItemSpawn itemSpawn = GameObject.FindFirstObjectByType<ItemSpawn>();
-            if (itemSpawn != null)
-            {
-                itemSpawn.SpawnItem(this.transform.position);
-            }
-            MakeExplosionEffect();
-            Destroy(this.gameObject);
+            Die();
         }
 
+    }
+
+    public void Die()
+    {
+
+        ItemDrop();
+        MakeExplosionEffect();
+        Destroy(this.gameObject);
+        
     }
 
     private void MakeExplosionEffect()
     {
         Instantiate(DamageEffect, this.transform.position, Quaternion.identity);
+    }
+
+    public void ItemDrop()
+    {
+        if (_itemSpawn != null)
+        {
+            _itemSpawn.SpawnItem(this.transform.position);
+        }
     }
 
 }

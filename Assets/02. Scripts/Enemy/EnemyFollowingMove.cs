@@ -15,6 +15,11 @@ public class EnemyFollowingMove : EnemyMove
     protected override void Move()
     {
         if (_player == null) return;
-        transform.Translate((_player.transform.position - transform.position).normalized * _enemyStat.Speed * Time.deltaTime);
+        Vector2 direction = _player.transform.position - transform.position;
+        transform.Translate(direction.normalized * _enemyStat.Speed * Time.deltaTime);
+
+        float angle = Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle +90 );
+
     }
 }
