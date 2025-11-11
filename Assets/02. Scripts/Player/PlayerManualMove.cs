@@ -48,7 +48,6 @@ public class PlayerManualMove : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        print(h);
 
         if (h > 0)
             _animator.SetBool("isRight", true);

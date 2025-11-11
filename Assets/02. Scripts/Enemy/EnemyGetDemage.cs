@@ -20,7 +20,6 @@ public class EnemyGetDemage : MonoBehaviour
     {
 
         _enemyStat.Health = Math.Max(_enemyStat.Health - Demage, 0);
-        Debug.Log(_enemyStat.Health);
         if (_animator != null)
         {
             _animator.SetTrigger("isHit");
