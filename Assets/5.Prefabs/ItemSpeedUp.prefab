@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 7770634516056205762}
   - component: {fileID: -4933638095048582912}
   - component: {fileID: 7836435730804108954}
-  - component: {fileID: 4375212434643632317}
   m_Layer: 0
   m_Name: ItemSpeedUp
   m_TagString: Untagged
@@ -141,7 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdd04c7fbf680348b0da456e0b18ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedUp: 2
+  PickupEffect: {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd, type: 3}
+  SpeedUp: 1
 --- !u!114 &7770634516056205762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,16 +203,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4375212434643632317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417516487700879902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad4456ed5539c94681194a20f175660, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PickupEffect: {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd, type: 3}

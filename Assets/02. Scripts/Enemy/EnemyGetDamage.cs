@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 
-public class EnemyGetDemage : MonoBehaviour
+public class EnemyGetDamage : MonoBehaviour
 {
     private EnemyStats _enemyStat;
     private Animator _animator;
 
     [Header("Demage Effect")]
-    public GameObject DemageEffect;
+    public GameObject DamageEffect;
 
     void Start()
     {
@@ -44,7 +44,7 @@ public class EnemyGetDemage : MonoBehaviour
 
     private void MakeExplosionEffect()
     {
-        Instantiate(DemageEffect, this.transform.position, Quaternion.identity);
+        Instantiate(DamageEffect, this.transform.position, Quaternion.identity);
     }
 
 }
