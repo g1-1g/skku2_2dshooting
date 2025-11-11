@@ -11,7 +11,6 @@ public class ItemSpeedUp : MonoBehaviour
         {
             PlayerSpeedChange player = collision.GetComponent<PlayerSpeedChange>();
             player.MoveSpeedUp(SpeedUp);
-            Destroy(this.gameObject);
         }
     }
 }

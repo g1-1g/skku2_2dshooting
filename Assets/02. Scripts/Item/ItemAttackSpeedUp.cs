@@ -10,7 +10,6 @@ public class ItemAttackSpeedUp : MonoBehaviour
         {
             PlayerFire player = collision.GetComponent<PlayerFire>();
             player.UpgradeFireRate(AttackspeedUp);
-            Destroy(this.gameObject);
         }
     }
 }

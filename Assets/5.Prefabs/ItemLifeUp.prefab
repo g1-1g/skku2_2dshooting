@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5445331219176185539}
   - component: {fileID: -7391915501430549288}
   - component: {fileID: -487436397980756029}
+  - component: {fileID: 2843190253538843683}
   m_Layer: 0
   m_Name: ItemLifeUp
   m_TagString: Untagged
@@ -201,3 +202,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2843190253538843683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7045747628089091624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad4456ed5539c94681194a20f175660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PickupEffect: {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd, type: 3}

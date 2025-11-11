@@ -7,7 +7,7 @@ public class EnemyGetDemage : MonoBehaviour
     private Animator _animator;
 
     [Header("Demage Effect")]
-    public GameObject demageEffect;
+    public GameObject DemageEffect;
 
     void Start()
     {
@@ -44,7 +44,7 @@ public class EnemyGetDemage : MonoBehaviour
 
     private void MakeExplosionEffect()
     {
-        Instantiate(demageEffect, this.transform.position, Quaternion.identity);
+        Instantiate(DemageEffect, this.transform.position, Quaternion.identity);
     }
 
 }

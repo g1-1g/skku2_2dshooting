@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a8e37762feb3c1342b8c0940409f859c
+guid: fad4456ed5539c94681194a20f175660
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - DemageEffect: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+  - PickupEffect: {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

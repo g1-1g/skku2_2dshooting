@@ -11,7 +11,6 @@ public class ItemLifeChanceUp : MonoBehaviour
         {
             PlayerStat player = collision.GetComponent<PlayerStat>();
             player.LifeChaceUp();
-            Destroy(this.gameObject);
         }
     }
 }
