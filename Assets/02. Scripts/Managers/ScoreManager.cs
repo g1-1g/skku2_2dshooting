@@ -19,6 +19,6 @@ public class ScoreManager : MonoBehaviour
 
     private void Refresh()
     {
-        _currentScoreTextUI.text = $"현재 점수 : {_currentScore}";
+        _currentScoreTextUI.text = $"현재 점수 : {_currentScore.ToString("#,0")}";
     }
 }
