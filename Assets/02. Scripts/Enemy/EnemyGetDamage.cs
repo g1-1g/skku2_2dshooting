@@ -10,7 +10,7 @@ public class EnemyGetDamage : MonoBehaviour
 
     [Header("Demage Effect")]
     public GameObject DamageEffect;
-
+   
     private EnemyManager _enemyManager;
 
     void Start()

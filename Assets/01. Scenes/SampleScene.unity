@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 36815266}
   - component: {fileID: 36815265}
   - component: {fileID: 36815267}
+  - component: {fileID: 36815269}
   - component: {fileID: 36815268}
   m_Layer: 0
   m_Name: Player
@@ -428,6 +429,21 @@ MonoBehaviour:
   BoomPrefab: {fileID: 6657784616786090043, guid: 502e5358bc113dd449bc2a343871409d, type: 3}
   _boomClip: {fileID: 8300000, guid: dbd6ebaf9661ece4a873a42d7fef0401, type: 3}
   _boomStartClip: {fileID: 8300000, guid: f17166099a44414408d2518878301ddb, type: 3}
+--- !u!114 &36815269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36815255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac24aa543c0c1f949bd4de4c6171539f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _diePrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
+  _source: {fileID: 1780728418}
+  _dieSound: {fileID: 8300000, guid: dd4d6207d38081244a8c6a0d756632b8, type: 3}
 --- !u!1 &48670301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,6 +1588,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27ff96b4da34ac43831198e1dfd8e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _source: {fileID: 1780728418}
+  _dieSound: {fileID: 8300000, guid: 6d479baeef62a0340afb824a8adcd6a2, type: 3}
   ScorePerKill: 100
 --- !u!114 &1278592000
 MonoBehaviour:
