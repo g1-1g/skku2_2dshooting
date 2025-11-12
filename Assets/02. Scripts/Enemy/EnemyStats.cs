@@ -30,10 +30,4 @@ public class EnemyStats : MonoBehaviour
         EnemyManager = GameObject.FindFirstObjectByType<EnemyManager>();
         EnemyManager.AddEnemy(this.gameObject);
     }
-
-
-    public void OnDestroy()
-    {
-        EnemyManager.RemoveEnemy(this.gameObject);
-    }
 }

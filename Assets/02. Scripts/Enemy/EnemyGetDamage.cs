@@ -11,11 +11,13 @@ public class EnemyGetDamage : MonoBehaviour
     [Header("Demage Effect")]
     public GameObject DamageEffect;
 
+    private EnemyManager _enemyManager;
     void Start()
     {
         _enemyStat = GetComponent<EnemyStats>();
         _animator = GetComponent<Animator>();
         _itemSpawn = GameObject.FindFirstObjectByType<ItemSpawn>();
+        _enemyManager = GameObject.FindFirstObjectByType<EnemyManager>();
     }
 
     void Update()
@@ -44,8 +46,8 @@ public class EnemyGetDamage : MonoBehaviour
 
         ItemDrop();
         MakeExplosionEffect();
-        Destroy(this.gameObject);
-        
+        _enemyManager.RemoveEnemy(this.gameObject);
+        Destroy(this.gameObject);   
     }
 
     private void MakeExplosionEffect()
