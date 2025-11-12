@@ -52,6 +52,7 @@ public class PlayerAutoMove : MonoBehaviour
 
         foreach (GameObject monster in _enemyManager.Monsters)
         {
+            if (monster == null) continue;
             if (monster.transform.position.y < MinY + _objectSize)
                 continue;
             float dist = Vector2.SqrMagnitude((Vector2)monster.transform.position - position);

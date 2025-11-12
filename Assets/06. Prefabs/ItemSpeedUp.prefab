@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PickupEffect: {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd, type: 3}
+  _pickSound: {fileID: 8300000, guid: d02a1dbaf657e5f489cf36985514ee7f, type: 3}
   SpeedUp: 1
 --- !u!114 &7770634516056205762
 MonoBehaviour:

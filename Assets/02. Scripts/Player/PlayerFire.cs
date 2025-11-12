@@ -22,6 +22,11 @@ public class PlayerFire : MonoBehaviour
 
     private PlayerStat _playerStat;
 
+    [Header("오디오")]
+    [SerializeField]
+    private AudioSource _audioSource;
+    private AudioClip _audioClip;
+
     void Start()
     {
         _nextFireTime = 0f;
@@ -30,6 +35,8 @@ public class PlayerFire : MonoBehaviour
         SubFireCycle = 20;
 
         _playerStat = GetComponent<PlayerStat>();
+
+        _audioClip = _audioSource.clip;
     }
 
     // Update is called once per frame
@@ -42,15 +49,14 @@ public class PlayerFire : MonoBehaviour
                 {
                     for (int i = 0; i < _firePosition.Length; i++)
                     {
+                        _audioSource.PlayOneShot(_audioClip);
                         Instantiate(_bulletPrefab, _firePosition[i].position, _firePosition[i].rotation);
                         
                     }
                     for (int i = 0; i < _subFirePosition.Length; i++)
                     {
-
+                        _audioSource.PlayOneShot(_audioClip);
                         Instantiate(_subBulletPrefab, _subFirePosition[i].position, _subFirePosition[i].rotation);
-        
-
                     }
                     _nextFireTime = Time.time + FireCooldown;
                 }
@@ -60,11 +66,13 @@ public class PlayerFire : MonoBehaviour
                 if (Input.GetKey(KeyCode.Space) && Time.time >= _nextFireTime)
                 {
                     for (int i = 0; i < _firePosition.Length; i++)
+                    {
+                        _audioSource.PlayOneShot(_audioClip);
                         Instantiate(_bulletPrefab, _firePosition[i].position, _firePosition[i].rotation);
-
+                    }
                     for (int i = 0; i < _subFirePosition.Length; i++)
                     {
-
+                        _audioSource.PlayOneShot(_audioClip);
                         Instantiate(_subBulletPrefab, _subFirePosition[i].position, _subFirePosition[i].rotation);
 
                     }
