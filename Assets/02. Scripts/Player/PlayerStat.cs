@@ -43,7 +43,7 @@ public class PlayerStat : MonoBehaviour
         }
     }
     
-    public void LifeChaceUp()
+    public void LifeChanceUp()
     {
         if (_lifeChance <= _lifeMaxChance)
         {

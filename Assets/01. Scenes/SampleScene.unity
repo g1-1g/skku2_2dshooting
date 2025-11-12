@@ -1604,7 +1604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentScoreTextUI: {fileID: 1866329314}
-  _BestScoreTextUI: {fileID: 831509523}
+  _bestScoreTextUI: {fileID: 831509523}
 --- !u!1 &1283210559
 GameObject:
   m_ObjectHideFlags: 0
