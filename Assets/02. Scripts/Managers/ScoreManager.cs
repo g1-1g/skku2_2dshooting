@@ -1,8 +1,6 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
-
+using DG.Tweening;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField]
@@ -31,10 +29,12 @@ public class ScoreManager : MonoBehaviour
     {
         _currentScore += score;
         Refresh();
+        RefreshEffect(_currentScoreTextUI);
 
         if (_currentScore > _bestScore)
         {
             _bestScore = _currentScore;
+            RefreshEffect(_BestScoreTextUI);
             BestScoreSet(_currentScore);
             BestScoreRefresh();
         }
@@ -42,14 +42,12 @@ public class ScoreManager : MonoBehaviour
 
     private void Refresh()
     {
-        RefreshEffect(_currentScoreTextUI);
         _currentScoreTextUI.text = $"{_currentScore.ToString("#,0")}";
     }
 
     private void BestScoreRefresh()
     {
         BestScoreSet(_bestScore);
-        RefreshEffect(_BestScoreTextUI);
         _BestScoreTextUI.text = $"{_bestScore.ToString("#,0")}";
     }
 
@@ -66,40 +64,6 @@ public class ScoreManager : MonoBehaviour
 
     private void RefreshEffect(Text textUI)
     {
-        if (textUI == _currentScoreTextUI)
-        {
-            if (_currentScoreAnim != null) StopCoroutine(_currentScoreAnim);
-            _currentScoreAnim = StartCoroutine(ScaleEffect(textUI));
-        }
-        else if (textUI == _BestScoreTextUI)
-        {
-            if (_bestScoreAnim != null) StopCoroutine(_bestScoreAnim);
-            _bestScoreAnim = StartCoroutine(ScaleEffect(textUI));
-        }
-    }
-
-    private IEnumerator ScaleEffect(Text textUI)
-    {
-        var rect = textUI.rectTransform;
-        Vector3 start = Vector3.one;
-        Vector3 big = Vector3.one * 1.2f;
-
-        float t = 0f;
-        while (t < 1f)
-        {
-            t += Time.deltaTime * 6f;
-            rect.localScale = Vector3.Lerp(start, big, t);
-            yield return null;
-        }
-
-        t = 0f;
-        while (t < 1f)
-        {
-            t += Time.deltaTime * 6f;
-            rect.localScale = Vector3.Lerp(big, start, t);
-            yield return null;
-        }
-
-        rect.localScale = Vector3.one;
+        textUI.rectTransform.DOPunchScale(Vector2.one * 0.2f, 0.3f, 1, 0.5f);
     }
 }
