@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour
     
     private ScoreManager _scoreManager;
 
-    public int Getscore = 100;
+    public int ScorePerKill = 100;
     void Start()
     {
         _scoreManager = GetComponent<ScoreManager>();
@@ -21,7 +21,7 @@ public class EnemyManager : MonoBehaviour
     }
     public void RemoveEnemy(GameObject enemy)
     {
-        if (_scoreManager != null) _scoreManager.ScoreUp(Getscore);
+        if (_scoreManager != null) _scoreManager.ScoreUp(ScorePerKill);
         _monsters.Remove(enemy);
     }
 }

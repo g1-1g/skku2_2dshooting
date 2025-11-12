@@ -12,6 +12,7 @@ public class EnemyGetDamage : MonoBehaviour
     public GameObject DamageEffect;
 
     private EnemyManager _enemyManager;
+
     void Start()
     {
         _enemyStat = GetComponent<EnemyStats>();

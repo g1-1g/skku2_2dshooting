@@ -6,47 +6,54 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField]
     private Text _currentScoreTextUI;
-    private int _currentScore = 0;
 
-    private const string _scoreKey = "currentScore";
+    [SerializeField]
+    private Text _BestScoreTextUI;
+
+    private int _currentScore = 0;
+    private int _bestScore = 0;
+
+    private const string _bestScoreKey = "bestScore";
+
     void Start()
     {
-        _currentScore = AccrueScoreGet();
-        Refresh(); 
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Alpha9)) ResetScore();
+        _bestScore = BestScoreGet();
+        Refresh();
+        BestScoreRefresh();
     }
 
     public void ScoreUp(int score)
     {
         _currentScore += score;
-        AccrueScoreSet(_currentScore);
+        BestScoreSet(_currentScore);
         Refresh();
+
+        if (_currentScore > _bestScore)
+        {
+            _bestScore = _currentScore;
+            BestScoreRefresh();
+        }
     }
 
     private void Refresh()
     {
-        _currentScoreTextUI.text = $"현재 점수 : {_currentScore.ToString("#,0")}";
+        _currentScoreTextUI.text = $"{_currentScore.ToString("#,0")}";
     }
 
-    private void AccrueScoreSet(int Score)
+    private void BestScoreRefresh()
     {
-        PlayerPrefs.SetInt(_scoreKey, Score);
+        BestScoreSet(_bestScore);
+        _BestScoreTextUI.text = $"{_bestScore.ToString("#,0")}";
+    }
+
+    private void BestScoreSet(int Score)
+    {
+        PlayerPrefs.SetInt(_bestScoreKey, Score);
         Debug.Log("저장했습니다.");
     }
 
-    private int AccrueScoreGet()
+    private int BestScoreGet()
     {
-        return PlayerPrefs.GetInt(_scoreKey, 0);
-    }
-    
-    private void ResetScore()
-    {
-        PlayerPrefs.SetInt(_scoreKey, 0);
-        _currentScore = 0;
-        Refresh();
+        return PlayerPrefs.GetInt(_bestScoreKey, 0);
     }
 }
