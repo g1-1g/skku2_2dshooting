@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
         EnemyGetDamage enemy = collision.GetComponent<EnemyGetDamage>();
 
         enemy.Hit(Demage);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     

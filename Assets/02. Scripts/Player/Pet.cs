@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class Pet : MonoBehaviour
     public GameObject _bulletPrefab;
 
     private Vector3 _followPos;
-    private int followDelay = 5;
+    private int followDelay = 15;
 
     [SerializeField]
     private Transform _parent;
@@ -31,9 +32,14 @@ public class Pet : MonoBehaviour
 
     void Watch()
     {
-        parentPos.Enqueue(_parent.position);
+        if (!parentPos.Contains(_parent.position))
+            parentPos.Enqueue(_parent.position);
 
-        _followPos = parentPos.Dequeue();
+
+        if (parentPos.Count > followDelay)
+        {
+            _followPos = parentPos.Dequeue();
+        }    
     }
     void Follow()
     {
