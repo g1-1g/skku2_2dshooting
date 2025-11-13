@@ -762,9 +762,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4a7712e09946341b3719cba38806b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 5502987633636654303, guid: 4fd8ba7fb4054f44ca4964b0b5f15d8a, type: 3}
   followDelay: 100
   _parent: {fileID: 36815258}
+  _coolTime: 5
 --- !u!1 &429313843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1709,7 +1709,9 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 5445628627163912558, guid: e42dd06310cdea043aa84f1ab806ba6e, type: 3}
   _subBulletPrefab: {fileID: 5502987633636654303, guid: cfb2c8884187eaf48927d4cb3d608f50, type: 3}
   _petBulletPrefab: {fileID: 5502987633636654303, guid: 4fd8ba7fb4054f44ca4964b0b5f15d8a, type: 3}
-  poolSize: 30
+  mainPoolSize: 30
+  subPoolSize: 30
+  petPoolSize: 30
 --- !u!1 &1039150425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,9 +1743,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4a7712e09946341b3719cba38806b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 5502987633636654303, guid: 4fd8ba7fb4054f44ca4964b0b5f15d8a, type: 3}
   followDelay: 140
   _parent: {fileID: 36815258}
+  _coolTime: 5
 --- !u!58 &1039150427
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2310,10 +2312,6 @@ MonoBehaviour:
   - {fileID: 7045747628089091624, guid: dc99fa7ba4d4aa2498fa2c5d73ccfadf, type: 3}
   - {fileID: 417516487700879902, guid: f235f98e850ece540b9151599370d8d4, type: 3}
   - {fileID: 5310191778004988765, guid: 19dfacc0b5c08f94f9a381c282a59b24, type: 3}
-  ItemWeight:
-  - 10
-  - 20
-  - 30
 --- !u!4 &1499678383
 Transform:
   m_ObjectHideFlags: 0
@@ -2422,9 +2420,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4a7712e09946341b3719cba38806b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 5502987633636654303, guid: 4fd8ba7fb4054f44ca4964b0b5f15d8a, type: 3}
   followDelay: 180
   _parent: {fileID: 36815258}
+  _coolTime: 5
 --- !u!58 &1658603622
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2767,6 +2765,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 0
+--- !u!1 &1970205874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1970205875}
+  m_Layer: 0
+  m_Name: EnemyFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1970205875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970205874}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2785,3 +2814,4 @@ SceneRoots:
   - {fileID: 1658603624}
   - {fileID: 1499678383}
   - {fileID: 1000826525}
+  - {fileID: 1970205875}
