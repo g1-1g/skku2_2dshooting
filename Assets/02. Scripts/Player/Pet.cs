@@ -1,13 +1,11 @@
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using static PlayerDie;
 
 public class Pet : MonoBehaviour
 {
     [SerializeField]
-    public GameObject _bulletPrefab;
+    private GameObject _bulletPrefab;
 
     private Vector3 _followPos;
     [SerializeField]
@@ -16,6 +14,11 @@ public class Pet : MonoBehaviour
     [SerializeField]
     private Transform _parent;
     private Queue<Vector3> parentPos;
+
+    [SerializeField]
+    private float _coolTime = 5;
+
+    private float _shootTime = 0;
 
 
     private void Awake()
@@ -26,6 +29,7 @@ public class Pet : MonoBehaviour
     {
         Watch();
         Follow();
+        Fire();
     }
 
     void Watch()
@@ -47,5 +51,12 @@ public class Pet : MonoBehaviour
     {
         transform.position = _followPos;
     }
-
+    void Fire()
+    {
+        if (_shootTime == 0 || Time.time > _shootTime + _coolTime)
+        {
+            BulletFactory.Instance.MakePetBullet(transform.position);
+            _shootTime = Time.time;
+        }
+    }
 }

@@ -32,7 +32,8 @@ public class BulletFactory : MonoBehaviour
     private void PoolInit()
     {
         _bulletObjectPool = new GameObject[poolSize];
-        for (int i = 0; i < poolSize; i++) { 
+        for (int i = 0; i < poolSize; i++) 
+        { 
             GameObject bulletObject = Instantiate(_bulletPrefab, transform);
 
             _bulletObjectPool[i] = bulletObject;

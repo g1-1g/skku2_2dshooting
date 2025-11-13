@@ -12,10 +12,14 @@ public enum EItemType
 public class ItemFactory : MonoBehaviour
 {
     static public ItemFactory Instance {  get; private set; }
-    public GameObject[] Item;
 
-    public float[] ItemWeight = { 10f, 20f, 30f };
+    [SerializeField]
+    private GameObject[] Item;
+
+    private float[] ItemWeight = { 10f, 20f, 30f };
     private float totalWeight;
+
+    private float itemSpawnProbability = 0.5f;
 
     public void Awake()
     {
@@ -33,9 +37,7 @@ public class ItemFactory : MonoBehaviour
 
     public void SpawnItem(Vector3 position)
     {
-
-
-        if (UnityEngine.Random.Range(0, 1.0f) <= 0.5f) return;
+        if (UnityEngine.Random.Range(0, 1.0f) <= itemSpawnProbability) return;
 
         GameObject item = ChooseItem();
         Instantiate(item, position, Quaternion.identity);
