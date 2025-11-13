@@ -40,7 +40,8 @@ public class EnemyGetDamage : MonoBehaviour
         ItemDrop();
         MakeExplosionEffect();
         _enemyManager.RemoveEnemy(this.gameObject);
-        Destroy(this.gameObject);   
+        if (gameObject.activeInHierarchy == false ) return;
+        EnemyFactory.Instance.ReturnPool(_enemyStat);
     }
 
     private void MakeExplosionEffect()

@@ -1,29 +1,35 @@
 using UnityEngine;
+using Redcode.Pools;
 
 public class EnemyFactory : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _enemyPrefab;
 
-    private GameObject[] _enemyobjectPool;
-    private int _enemyPoolSize = 30;
+    private PoolManager _poolManager;
 
+    public static EnemyFactory Instance { get; private set; }
     private void Awake()
     {
-        PoolInit(_enemyPoolSize, ref _enemyobjectPool, _enemyPrefab);
-    }
-
-    private void PoolInit(int size, ref GameObject[] pool, GameObject prefab)
-    {
-        pool = new GameObject[size];
-        for (int i = 0; i < size; i++)
+        if (Instance != null && Instance != this)
         {
-            GameObject enemyObject = Instantiate(prefab, transform);
-
-            pool[i] = enemyObject;
-
-            enemyObject.SetActive(false);
+            Destroy(gameObject);
+            return;
         }
+        Instance = this;
     }
 
+    void Start()
+    {
+        _poolManager = GetComponent<PoolManager>();
+    }
+
+    public void Spawn(int ran, Vector2 pos)
+    {
+        EnemyStats enemy = _poolManager.GetFromPool<EnemyStats>(ran);
+        enemy.transform.position = pos;
+    }
+
+    public void ReturnPool(EnemyStats enemy)
+    {
+        _poolManager.TakeToPool<EnemyStats>(enemy.IdName, enemy);
+    }
 }

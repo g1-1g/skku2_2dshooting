@@ -2774,6 +2774,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1970205875}
+  - component: {fileID: 1970205876}
+  - component: {fileID: 1970205877}
   m_Layer: 0
   m_Name: EnemyFactory
   m_TagString: Untagged
@@ -2796,6 +2798,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1970205876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970205874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 733f4e1ff483611408f4a8d4fc9202ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pools:
+  - _name: Basic Monster
+    _component: {fileID: 4459482244471072420, guid: 2d993707d2652dd44bdb3dd750f034e1, type: 3}
+    _count: 0
+    _container: {fileID: 1970205875}
+    _nonLazy: 0
+  - _name: Faster Monster
+    _component: {fileID: 2836308095983380582, guid: 9df236857bf3c8f4a832ca9b9f874be6, type: 3}
+    _count: 0
+    _container: {fileID: 1970205875}
+    _nonLazy: 0
+  - _name: Follower Monster
+    _component: {fileID: 2836308095983380582, guid: a3127dd629bd47d44af1c47e70541a3f, type: 3}
+    _count: 0
+    _container: {fileID: 1970205875}
+    _nonLazy: 0
+--- !u!114 &1970205877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970205874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01392a7f5e13dcf47a6d9f1d166debb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -23,6 +23,11 @@ public class DestroyZone : MonoBehaviour
             collision.gameObject.SetActive(false);
             return;
         }
+        if (collision.CompareTag("Enemy"))
+        {
+            EnemyFactory.Instance.ReturnPool(collision.GetComponent<EnemyStats>());
+            return;
+        }
         Destroy(collision.gameObject);
 
     }

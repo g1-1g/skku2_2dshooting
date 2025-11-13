@@ -46,20 +46,19 @@ public class EnemySpawn : MonoBehaviour
             {
                 _spawnLeftTop = _leftTop + Enemys[(int)EEnemyType.Direction].transform.localScale / 2;
                 _spawnRightTop =  _rightTop - Enemys[(int)EEnemyType.Direction].transform.localScale / 2;
-                Instantiate(Enemys[(int)EEnemyType.Direction], new Vector2(UnityEngine.Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
+                EnemyFactory.Instance.Spawn((int)EEnemyType.Direction, new Vector2(UnityEngine.Random.Range(_leftTop.x, _rightTop.x), transform.position.y));
             }
             else if (probabilityA < rand & rand < probabilityA+probabilityB)
             {
                 _spawnLeftTop = _leftTop + Enemys[(int)EEnemyType.Following].transform.localScale / 2;
                 _spawnRightTop = _rightTop - Enemys[(int)EEnemyType.Following].transform.localScale / 2;
-                Instantiate(Enemys[(int)EEnemyType.Following], new Vector2(UnityEngine.Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
+                EnemyFactory.Instance.Spawn((int)EEnemyType.Following, new Vector2(UnityEngine.Random.Range(_leftTop.x, _rightTop.x), transform.position.y));
             }
             else
             {
                 _spawnLeftTop = _leftTop + Enemys[(int)EEnemyType.Faster].transform.localScale / 2;
                 _spawnRightTop = _rightTop - Enemys[(int)EEnemyType.Faster].transform.localScale / 2;
-                Instantiate(Enemys[(int)EEnemyType.Faster], new Vector2(UnityEngine.Random.Range(_leftTop.x, _rightTop.x), transform.position.y), transform.rotation);
-               
+                EnemyFactory.Instance.Spawn((int)EEnemyType.Faster, new Vector2(UnityEngine.Random.Range(_leftTop.x, _rightTop.x), transform.position.y));               
             }
 
 
