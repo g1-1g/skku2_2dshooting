@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    static public EnemyManager Instance { get; private set; }
 
     private HashSet<GameObject> _monsters = new HashSet<GameObject>();
     public HashSet<GameObject> Monsters { get { return _monsters; } }
-    
-    private ScoreManager _scoreManager;
-
 
     [SerializeField]
     private AudioClip _dieSound;
 
 
     public int ScorePerKill = 100;
-    void Start()
+
+    public void Awake()
     {
-        _scoreManager = GetComponent<ScoreManager>();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
     }
     public void AddEnemy(GameObject enemy)
     {
@@ -27,7 +31,7 @@ public class EnemyManager : MonoBehaviour
     public void RemoveEnemy(GameObject enemy)
     {
         SFXManager.Instance.SoundPlay(_dieSound);
-        if (_scoreManager != null) _scoreManager.ScoreUp(ScorePerKill);
+        if (ScoreManager.Instance != null) ScoreManager.Instance.ScoreUp(ScorePerKill);
         _monsters.Remove(enemy);
     }
 }
