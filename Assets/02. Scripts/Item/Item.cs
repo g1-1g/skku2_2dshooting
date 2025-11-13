@@ -24,7 +24,7 @@ public abstract class Item : MonoBehaviour
     {
         GameObject effect = Instantiate(PickupEffect, go.transform.position, Quaternion.identity);
         effect.transform.parent = go.transform;
-        go.GetComponentInChildren<SFXManager>().SoundPlay(_pickSound);
+        SFXManager.Instance.SoundPlay(_pickSound);
     }
 
     protected abstract void ApplyEffect(GameObject player);

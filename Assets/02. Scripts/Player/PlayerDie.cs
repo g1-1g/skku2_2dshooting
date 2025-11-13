@@ -7,8 +7,6 @@ public class PlayerDie : MonoBehaviour
     private GameObject _diePrefab;
 
     [SerializeField]
-    private SFXManager _sfxManager;
-    [SerializeField]
     private AudioClip _dieSound;
 
     public void Die()
@@ -20,7 +18,7 @@ public class PlayerDie : MonoBehaviour
 
     private void MakeExplosionEffect()
     {
-        _sfxManager.SoundPlay(_dieSound);
+        SFXManager.Instance.SoundPlay(_dieSound);
         Instantiate(_diePrefab, transform.position, Quaternion.identity);
     }
 }

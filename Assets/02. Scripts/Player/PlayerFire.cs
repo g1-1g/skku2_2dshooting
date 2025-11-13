@@ -25,8 +25,6 @@ public class PlayerFire : MonoBehaviour
 
     [Header("오디오")]
     [SerializeField]
-    private SFXManager _sfxManager;
-    [SerializeField]
     private AudioClip _audioClip;
 
     void Start()
@@ -35,7 +33,6 @@ public class PlayerFire : MonoBehaviour
 
         FireCooldown = 1;
         SubFireCycle = 20;
-        _sfxManager = GetComponentInChildren<SFXManager>();
         _playerStat = GetComponent<PlayerStat>();
     }
 
@@ -49,12 +46,12 @@ public class PlayerFire : MonoBehaviour
                 {
                     for (int i = 0; i < _firePosition.Length; i++)
                     {
-                        _sfxManager.SoundPlay(_audioClip);
+                        SFXManager.Instance.SoundPlay(_audioClip);
                         Instantiate(_bulletPrefab, _firePosition[i].position, _firePosition[i].rotation);   
                     }
                     for (int i = 0; i < _subFirePosition.Length; i++)
                     {
-                        _sfxManager.SoundPlay(_audioClip);
+                        SFXManager.Instance.SoundPlay(_audioClip);
                         Instantiate(_subBulletPrefab, _subFirePosition[i].position, _subFirePosition[i].rotation);
                     }
                     _nextFireTime = Time.time + FireCooldown;
@@ -66,12 +63,12 @@ public class PlayerFire : MonoBehaviour
                 {
                     for (int i = 0; i < _firePosition.Length; i++)
                     {
-                        _sfxManager.SoundPlay(_audioClip);
+                        SFXManager.Instance.SoundPlay(_audioClip);
                         Instantiate(_bulletPrefab, _firePosition[i].position, _firePosition[i].rotation);
                     }
                     for (int i = 0; i < _subFirePosition.Length; i++)
                     {
-                        _sfxManager.SoundPlay(_audioClip);
+                        SFXManager.Instance.SoundPlay(_audioClip);
                         Instantiate(_subBulletPrefab, _subFirePosition[i].position, _subFirePosition[i].rotation);
 
                     }
