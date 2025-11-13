@@ -14,8 +14,17 @@ public class BulletFactory : MonoBehaviour
 
     [Header("풀링")]
     [SerializeField]
-    private int poolSize = 30;
+    private int mainPoolSize = 30;
     private GameObject[] _bulletObjectPool; //탄창
+
+    [SerializeField]
+    private int subPoolSize = 30;
+    private GameObject[] _subBulletObjectPool;
+
+    [SerializeField]
+    private int petPoolSize = 30;
+    private GameObject[] _petBulletObjectPool; //탄창
+
 
     private void Awake()
     {
@@ -25,18 +34,20 @@ public class BulletFactory : MonoBehaviour
             return;
         }
         Instance = this;
-        PoolInit();
+        PoolInit(mainPoolSize, ref _bulletObjectPool, _bulletPrefab);
+        PoolInit(subPoolSize, ref _subBulletObjectPool, _subBulletPrefab);
+        PoolInit(petPoolSize, ref _petBulletObjectPool, _petBulletPrefab);
     }
     
     //탄창 초기화
-    private void PoolInit()
+    private void PoolInit(int size, ref GameObject[] pool, GameObject prefab)
     {
-        _bulletObjectPool = new GameObject[poolSize];
-        for (int i = 0; i < poolSize; i++) 
+        pool = new GameObject[size];
+        for (int i = 0; i < size; i++) 
         { 
-            GameObject bulletObject = Instantiate(_bulletPrefab, transform);
+            GameObject bulletObject = Instantiate(prefab, transform);
 
-            _bulletObjectPool[i] = bulletObject;
+            pool[i] = bulletObject;
 
             bulletObject.SetActive(false);
         }
@@ -46,7 +57,7 @@ public class BulletFactory : MonoBehaviour
     public GameObject MakeBullet(Vector3 position)
     {
         //1. 탄창 안에 있는 총알들 중에서
-        for (int i = 0; i < poolSize; i++)
+        for (int i = 0; i < mainPoolSize; i++)
         {
             GameObject bulletObject = _bulletObjectPool[i];
 
@@ -64,11 +75,35 @@ public class BulletFactory : MonoBehaviour
     }
     public GameObject MakeSubBullet(Vector3 position)
     {
-        return Instantiate(_subBulletPrefab, position, Quaternion.identity, transform);
+        for (int i = 0; i < subPoolSize; i++)
+        {
+            GameObject bulletObject = _subBulletObjectPool[i];
+
+            if (bulletObject.activeInHierarchy == false)
+            {
+                bulletObject.transform.position = position;
+                bulletObject.SetActive(true);
+
+                return bulletObject;
+            }
+        }
+        return null;
     }
 
     public GameObject MakePetBullet(Vector3 position)
     {
-        return Instantiate(_petBulletPrefab, position, Quaternion.identity, transform);
+        for (int i = 0; i < petPoolSize; i++)
+        {
+            GameObject bulletObject = _petBulletObjectPool[i];
+
+            if (bulletObject.activeInHierarchy == false)
+            {
+                bulletObject.transform.position = position;
+                bulletObject.SetActive(true);
+
+                return bulletObject;
+            }
+        }
+        return null;
     }
 }

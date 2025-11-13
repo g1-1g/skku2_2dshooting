@@ -19,8 +19,5 @@ public class MainBullet : Bullet
     {
         Vector2 newPosition = Vector2.up * Speed * Time.deltaTime + (Vector2)transform.position;
         transform.position = newPosition;
-    }
-
-
-    
+    }   
 }

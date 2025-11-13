@@ -4,9 +4,6 @@ using static PlayerDie;
 
 public class Pet : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _bulletPrefab;
-
     private Vector3 _followPos;
     [SerializeField]
     private int followDelay = 110;
@@ -24,6 +21,7 @@ public class Pet : MonoBehaviour
     private void Awake()
     {
         parentPos = new Queue<Vector3>();
+        _shootTime = Time.time;
     }
     void Update()
     {
@@ -53,7 +51,7 @@ public class Pet : MonoBehaviour
     }
     void Fire()
     {
-        if (_shootTime == 0 || Time.time > _shootTime + _coolTime)
+        if (Time.time > _shootTime + _coolTime)
         {
             BulletFactory.Instance.MakePetBullet(transform.position);
             _shootTime = Time.time;
