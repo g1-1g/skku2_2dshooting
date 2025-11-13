@@ -34,7 +34,6 @@ public class ScoreManager : MonoBehaviour
         {
             _bestScore = _currentScore;
             RefreshEffect(_bestScoreTextUI);
-            BestScoreSet(_currentScore);
             BestScoreRefresh();
         }
     }
