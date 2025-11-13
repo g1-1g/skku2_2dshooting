@@ -5,22 +5,30 @@ using UnityEngine;
 
 public enum EItemType
 {
-        AttackSpeedUp,
+    AttackSpeedUp,
         MoveSpeedUp,
         HealthUp,
 }
-
-public class ItemSpawn : MonoBehaviour
+public class ItemFactory : MonoBehaviour
 {
+    static public ItemFactory Instance {  get; private set; }
     public GameObject[] Item;
 
     public float[] ItemWeight = { 10f, 20f, 30f };
     private float totalWeight;
 
+    public void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     public void Start()
     {
         totalWeight = ItemWeight.Sum();
-
     }
 
     public void SpawnItem(Vector3 position)

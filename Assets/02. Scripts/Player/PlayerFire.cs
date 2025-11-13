@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class PlayerFire : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField]
-    private GameObject _bulletPrefab;
-    [SerializeField]
-    private GameObject _subBulletPrefab;
     [SerializeField]
     private Transform[] _firePosition;
     [SerializeField]
@@ -46,12 +41,12 @@ public class PlayerFire : MonoBehaviour
                     for (int i = 0; i < _firePosition.Length; i++)
                     {
                         SFXManager.Instance.SoundPlay(_audioClip);
-                        Instantiate(_bulletPrefab, _firePosition[i].position, _firePosition[i].rotation);   
+                        BulletFactory.Instance.MakeBullet(_firePosition[i].position);
                     }
                     for (int i = 0; i < _subFirePosition.Length; i++)
                     {
                         SFXManager.Instance.SoundPlay(_audioClip);
-                        Instantiate(_subBulletPrefab, _subFirePosition[i].position, _subFirePosition[i].rotation);
+                        BulletFactory.Instance.MakeSubBullet(_subFirePosition[i].position);
                     }
                     _nextFireTime = Time.time + FireCooldown;
                 }
@@ -63,21 +58,18 @@ public class PlayerFire : MonoBehaviour
                     for (int i = 0; i < _firePosition.Length; i++)
                     {
                         SFXManager.Instance.SoundPlay(_audioClip);
-                        Instantiate(_bulletPrefab, _firePosition[i].position, _firePosition[i].rotation);
+                        BulletFactory.Instance.MakeBullet(_firePosition[i].position);
                     }
                     for (int i = 0; i < _subFirePosition.Length; i++)
                     {
                         SFXManager.Instance.SoundPlay(_audioClip);
-                        Instantiate(_subBulletPrefab, _subFirePosition[i].position, _subFirePosition[i].rotation);
-
+                        BulletFactory.Instance.MakeSubBullet(_subFirePosition[i].position);
                     }
                     _nextFireTime = Time.time + FireCooldown;
                 }
                 
                 break;
-        }
-        
-        
+        }     
     }
     public void UpgradeFireRate(float amount)
     {
