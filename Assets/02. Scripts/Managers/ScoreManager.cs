@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class ScoreManager : MonoBehaviour
 {
+    static public ScoreManager Instance { get; private set; }
+    
     [SerializeField]
     private Text _currentScoreTextUI;
 
@@ -16,6 +18,15 @@ public class ScoreManager : MonoBehaviour
 
     private const string _bestScoreKey = "bestScore";
 
+    private void Awake()
+    {
+        if (Instance !=  null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     void Start()
     {
         _bestScore = BestScoreGet();
