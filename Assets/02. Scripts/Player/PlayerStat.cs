@@ -7,7 +7,6 @@ public class PlayerStat : MonoBehaviour
     private int _lifeMaxChance = 5;
     public int LifeChance { get { return _lifeChance; } set { _lifeChance = value; } }
 
-
     [Header("속도 조절 관련 속성")]
     private float _speed = 2;
     public float Speed { get { return _speed; } set { _speed = value; } }
@@ -30,7 +29,6 @@ public class PlayerStat : MonoBehaviour
         {
             _mode = 2;
         }
-
     }
     public void Hit()
     {
@@ -41,11 +39,10 @@ public class PlayerStat : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
-            Debug.Log("Player Die");
+            gameObject.GetComponent<PlayerDie>().Die();
         }
-
     }
+    
     public void LifeChaceUp()
     {
         if (_lifeChance <= _lifeMaxChance)

@@ -7,15 +7,19 @@ public class EnemyManager : MonoBehaviour
 
     private HashSet<GameObject> _monsters = new HashSet<GameObject>();
     public HashSet<GameObject> Monsters { get { return _monsters; } }
+    
+    private ScoreManager _scoreManager;
 
+    [SerializeField]
+    private AudioSource _source;
+    [SerializeField]
+    private AudioClip _dieSound;
+
+
+    public int ScorePerKill = 100;
     void Start()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        _scoreManager = GetComponent<ScoreManager>();
     }
     public void AddEnemy(GameObject enemy)
     {
@@ -23,6 +27,8 @@ public class EnemyManager : MonoBehaviour
     }
     public void RemoveEnemy(GameObject enemy)
     {
+        _source.PlayOneShot(_dieSound);
+        if (_scoreManager != null) _scoreManager.ScoreUp(ScorePerKill);
         _monsters.Remove(enemy);
     }
 }

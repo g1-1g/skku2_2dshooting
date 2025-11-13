@@ -5,6 +5,10 @@ public abstract class Item : MonoBehaviour
 {
    
     public GameObject PickupEffect;
+
+    [SerializeField]
+    private AudioClip _pickSound;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -20,6 +24,7 @@ public abstract class Item : MonoBehaviour
     {
         GameObject effect = Instantiate(PickupEffect, go.transform.position, Quaternion.identity);
         effect.transform.parent = go.transform;
+        go.GetComponentInChildren<AudioSource>().PlayOneShot(_pickSound);
     }
 
     protected abstract void ApplyEffect(GameObject player);
