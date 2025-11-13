@@ -10,8 +10,7 @@ public class EnemyManager : MonoBehaviour
     
     private ScoreManager _scoreManager;
 
-    [SerializeField]
-    private AudioSource _source;
+
     [SerializeField]
     private AudioClip _dieSound;
 
@@ -27,7 +26,7 @@ public class EnemyManager : MonoBehaviour
     }
     public void RemoveEnemy(GameObject enemy)
     {
-        _source.PlayOneShot(_dieSound);
+        SFXManager.Instance.SoundPlay(_dieSound);
         if (_scoreManager != null) _scoreManager.ScoreUp(ScorePerKill);
         _monsters.Remove(enemy);
     }

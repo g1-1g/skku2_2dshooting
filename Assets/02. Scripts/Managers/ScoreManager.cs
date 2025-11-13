@@ -9,13 +9,10 @@ public class ScoreManager : MonoBehaviour
     private Text _currentScoreTextUI;
 
     [SerializeField]
-    private Text _BestScoreTextUI;
+    private Text _bestScoreTextUI;
 
     private int _currentScore = 0;
     private int _bestScore = 0;
-
-    private Coroutine _currentScoreAnim;
-    private Coroutine _bestScoreAnim;
 
     private const string _bestScoreKey = "bestScore";
 
@@ -36,8 +33,7 @@ public class ScoreManager : MonoBehaviour
         if (_currentScore > _bestScore)
         {
             _bestScore = _currentScore;
-            RefreshEffect(_BestScoreTextUI);
-            BestScoreSet(_currentScore);
+            RefreshEffect(_bestScoreTextUI);
             BestScoreRefresh();
         }
     }
@@ -50,12 +46,12 @@ public class ScoreManager : MonoBehaviour
     private void BestScoreRefresh()
     {
         BestScoreSet(_bestScore);
-        _BestScoreTextUI.text = $"{_bestScore.ToString("#,0")}";
+        _bestScoreTextUI.text = $"{_bestScore.ToString("#,0")}";
     }
 
-    private void BestScoreSet(int Score)
+    private void BestScoreSet(int score)
     {
-        PlayerPrefs.SetInt(_bestScoreKey, Score);
+        PlayerPrefs.SetInt(_bestScoreKey, score);
         Debug.Log("저장했습니다.");
     }
 

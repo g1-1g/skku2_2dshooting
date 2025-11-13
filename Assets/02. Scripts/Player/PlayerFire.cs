@@ -24,7 +24,6 @@ public class PlayerFire : MonoBehaviour
 
     [Header("오디오")]
     [SerializeField]
-    private AudioSource _audioSource;
     private AudioClip _audioClip;
 
     void Start()
@@ -33,10 +32,7 @@ public class PlayerFire : MonoBehaviour
 
         FireCooldown = 1;
         SubFireCycle = 20;
-
         _playerStat = GetComponent<PlayerStat>();
-
-        _audioClip = _audioSource.clip;
     }
 
     // Update is called once per frame
@@ -49,13 +45,12 @@ public class PlayerFire : MonoBehaviour
                 {
                     for (int i = 0; i < _firePosition.Length; i++)
                     {
-                        _audioSource.PlayOneShot(_audioClip);
-                        Instantiate(_bulletPrefab, _firePosition[i].position, _firePosition[i].rotation);
-                        
+                        SFXManager.Instance.SoundPlay(_audioClip);
+                        Instantiate(_bulletPrefab, _firePosition[i].position, _firePosition[i].rotation);   
                     }
                     for (int i = 0; i < _subFirePosition.Length; i++)
                     {
-                        _audioSource.PlayOneShot(_audioClip);
+                        SFXManager.Instance.SoundPlay(_audioClip);
                         Instantiate(_subBulletPrefab, _subFirePosition[i].position, _subFirePosition[i].rotation);
                     }
                     _nextFireTime = Time.time + FireCooldown;
@@ -67,12 +62,12 @@ public class PlayerFire : MonoBehaviour
                 {
                     for (int i = 0; i < _firePosition.Length; i++)
                     {
-                        _audioSource.PlayOneShot(_audioClip);
+                        SFXManager.Instance.SoundPlay(_audioClip);
                         Instantiate(_bulletPrefab, _firePosition[i].position, _firePosition[i].rotation);
                     }
                     for (int i = 0; i < _subFirePosition.Length; i++)
                     {
-                        _audioSource.PlayOneShot(_audioClip);
+                        SFXManager.Instance.SoundPlay(_audioClip);
                         Instantiate(_subBulletPrefab, _subFirePosition[i].position, _subFirePosition[i].rotation);
 
                     }

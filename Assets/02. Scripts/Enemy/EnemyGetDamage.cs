@@ -8,7 +8,7 @@ public class EnemyGetDamage : MonoBehaviour
 
     private ItemSpawn _itemSpawn;
 
-    [Header("Demage Effect")]
+    [Header("Damage Effect")]
     public GameObject DamageEffect;
    
     private EnemyManager _enemyManager;
